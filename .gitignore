@@ -1,0 +1,32 @@
+# macOS
+.DS_Store
+**/.DS_Store
+
+# Claude Code settings (private)
+.claude/
+
+# Screenshots / reference images (not needed for website)
+Screenshots/
+Screenshots\
+format.png
+loading_proportion.png
+Harshita_CV.png
+Untitled design.png
+
+# Unused game experiment files
+game.js
+gamecharacter_front.png
+gamecharacter_side.png
+
+# Unused / duplicate asset folders (not referenced by any HTML)
+sonam/
+infuzze/
+elements/sonam/
+elements/Gulaal/
+elements/Moschino/
+elements/Project Asli/
+elements/acne studios/
+elements/infuzze/
+elements/loewe/
+elements/game/
+elements/things i want in my website/

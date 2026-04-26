@@ -1,0 +1,366 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Moschino</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Silkscreen:wght@400;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #ffffff;
+        --ink: #141414;
+        --panel: #fff8f2;
+        --card: rgba(255, 248, 242, 0.72);
+        --accent: #b8271c;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        background: var(--bg);
+        color: var(--ink);
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "Cormorant Garamond", Georgia, serif;
+        font-size: 18px;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      .page {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        padding: 1rem 0 0.8rem;
+      }
+
+      .topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        margin-bottom: 0.8rem;
+        max-width: 1500px;
+        width: 100%;
+        align-self: center;
+        position: sticky;
+        top: 0.75rem;
+        z-index: 10;
+        padding: 0.35rem;
+        border-radius: 999px;
+        backdrop-filter: blur(16px);
+        background: rgba(241, 226, 213, 0.72);
+      }
+
+      .back-link {
+        display: inline-block;
+        font-family: "Silkscreen", sans-serif;
+        text-decoration: none;
+        color: #151515;
+        border: 2px solid #151515;
+        border-radius: 999px;
+        padding: 0.6rem 1rem;
+        background: #fff;
+        transition: transform 160ms ease, box-shadow 160ms ease;
+      }
+
+      .back-link:hover,
+      .back-link:focus-visible {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 18px rgba(0, 0, 0, 0.08);
+      }
+
+      h1 {
+        margin: 0;
+        font-family: "Press Start 2P", cursive;
+        font-size: clamp(1.2rem, 2vw, 2.2rem);
+        color: var(--accent);
+      }
+
+      .title-wrap {
+        width: 100%;
+        max-width: 1500px;
+        align-self: center;
+        margin: 0.35rem 0 1.2rem;
+        padding: clamp(1rem, 2.2vw, 1.6rem);
+        border: 2px solid rgba(20, 20, 20, 0.12);
+        border-radius: 28px;
+        background: rgba(255, 248, 242, 0.62);
+      }
+
+      .kicker {
+        margin: 0 0 0.8rem;
+        font-family: "Silkscreen", sans-serif;
+        letter-spacing: 0.03em;
+        font-size: 0.82rem;
+        color: var(--accent);
+      }
+
+      .title-wrap h2 {
+        margin: 0;
+        font-family: "Press Start 2P", cursive;
+        font-size: clamp(1rem, 1.65vw, 1.35rem);
+        line-height: 1.45;
+        color: var(--accent);
+      }
+
+      .summary {
+        margin: 1rem 0 0;
+        max-width: 95ch;
+        font-size: clamp(0.98rem, 1.25vw, 1.16rem);
+        line-height: 1.75;
+      }
+
+      .credits-block {
+        margin-top: 1.1rem;
+        padding: 0.95rem 1rem;
+        border-radius: 16px;
+        border: 2px solid rgba(20, 20, 20, 0.14);
+        background: rgba(255, 253, 249, 0.72);
+      }
+
+      .credits-block h3 {
+        margin: 0 0 0.55rem;
+        font-family: "Silkscreen", sans-serif;
+        font-size: 0.94rem;
+        color: var(--accent);
+      }
+
+      .credits-block p {
+        margin: 0;
+        line-height: 1.65;
+        font-size: clamp(0.92rem, 1.1vw, 1.04rem);
+      }
+
+      .embed-shell {
+        flex: 1;
+        width: 100%;
+        max-width: 1500px;
+        align-self: center;
+        display: grid;
+        gap: 1.1rem;
+        padding-bottom: 1rem;
+      }
+
+      .photo-card {
+        width: 100%;
+        margin: 0;
+        border: 0;
+        border-radius: 0;
+        background: transparent;
+        box-shadow: none;
+        overflow: hidden;
+        padding: 0;
+      }
+
+      .photo-card img {
+        display: block;
+        width: 100%;
+        height: auto;
+        border-radius: 0;
+        object-fit: contain;
+        background: transparent;
+      }
+
+      .gallery {
+        width: 100%;
+        display: grid;
+        gap: 0;
+      }
+
+      .gallery-shell {
+        width: 100%;
+        max-width: 1500px;
+        align-self: center;
+        padding-inline: clamp(0.8rem, 4vw, 3.4rem);
+      }
+
+      .reveal-on-scroll {
+        opacity: 0;
+        transform: translateY(18px);
+        transition:
+          opacity 0.72s cubic-bezier(0.22, 1, 0.36, 1),
+          transform 0.72s cubic-bezier(0.22, 1, 0.36, 1);
+        transition-delay: var(--reveal-delay, 0ms);
+      }
+
+      .reveal-on-scroll.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .reveal-on-scroll,
+        .reveal-on-scroll.is-visible {
+          opacity: 1;
+          transform: none;
+          transition: none;
+        }
+      }
+
+      @media (max-width: 760px) {
+        .page {
+          padding: 0.9rem 0 0.6rem;
+        }
+
+        .topbar {
+          flex-direction: column;
+          align-items: flex-start;
+          position: static;
+          border-radius: 28px;
+          margin-inline: 0.9rem;
+        }
+
+        .title-wrap {
+          margin-inline: 0.9rem;
+        }
+
+        .gallery-shell {
+          padding-inline: 0.9rem;
+        }
+      }
+    </style>
+    <script>if(window.self!==window.top){document.write('<style>.topbar,.back-link{display:none!important}</style>');}</script>
+  </head>
+  <body>
+    <main class="page">
+      <div class="topbar">
+        <a class="back-link" href="selective-works.html">← Back to Selective works</a>
+        <h1>Moschino</h1>
+      </div>
+
+      <section class="title-wrap" aria-label="Project description and credits">
+        <p class="kicker">BRAND &amp; RETAIL STUDY</p>
+        <h2>Moschino – Brand &amp; Retail Study</h2>
+        <p class="summary">
+          A collaborative deep dive into Moschino’s personality, from its playful brand codes (teddy
+          bears, hearts, trompe‑l’œil) to how that attitude comes alive in stores across Milan, Paris,
+          New York, Tokyo and Beijing. We explored how each space reflects the spirit of its city
+          while staying true to Moschino’s irreverent, theatrical luxury.
+        </p>
+        <div class="credits-block" aria-label="Project credits">
+          <h3>Credits</h3>
+          <p>
+            Research, analysis, writing and presentation: Parthvi Thakkar, Abbigail Karsten, Harshita
+            Sharma, Karan Verma.
+          </p>
+        </div>
+      </section>
+
+      <section class="gallery-shell" aria-label="Moschino image sequence">
+        <div class="gallery" id="gallery"></div>
+      </section>
+    </main>
+
+    <script>
+      const imageFiles = [
+        "1.png",
+        "3.png",
+        "4.png",
+        "5.png",
+        "6.png",
+        "7.png",
+        "9.png",
+        "10.png",
+        "11.png",
+        "12.png",
+        "13.png",
+        "14.png",
+        "15.png",
+        "16.png",
+        "17.png",
+        "18.png",
+        "19.png",
+        "20.png",
+        "21.png",
+        "22.png",
+        "23.png",
+        "24.png",
+        "25.png",
+        "26.png",
+        "27.png",
+        "28.png",
+        "29.png",
+        "30.png",
+        "31.png",
+        "32.png",
+        "33.png",
+        "34.png",
+        "35.png",
+        "36.png",
+        "37.png",
+        "62.png"
+      ];
+
+      const gallery = document.getElementById("gallery");
+
+      imageFiles.forEach((fileName) => {
+        const figure = document.createElement("figure");
+        figure.className = "photo-card";
+
+        const img = document.createElement("img");
+        img.loading = "lazy";
+        img.decoding = "async";
+        img.src = `Moschino/${fileName}`;
+        img.alt = `Moschino ${fileName.replace(/\.png$/i, "")}`;
+
+        figure.appendChild(img);
+        gallery.appendChild(figure);
+      });
+
+      const revealTargets = document.querySelectorAll(".title-wrap, .photo-card");
+      revealTargets.forEach((el, index) => {
+        el.classList.add("reveal-on-scroll");
+        el.style.setProperty("--reveal-delay", `${(index % 5) * 55}ms`);
+      });
+
+      const revealInView = () => {
+        const viewTop = window.innerHeight * 0.08;
+        const viewBottom = window.innerHeight * 0.9;
+        revealTargets.forEach((el) => {
+          if (el.classList.contains("is-visible")) return;
+          const rect = el.getBoundingClientRect();
+          if (rect.top <= viewBottom && rect.bottom >= viewTop) {
+            el.classList.add("is-visible");
+          }
+        });
+      };
+
+      if (!("IntersectionObserver" in window)) {
+        revealTargets.forEach((el) => el.classList.add("is-visible"));
+      } else {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (!entry.isIntersecting) return;
+              entry.target.classList.add("is-visible");
+              observer.unobserve(entry.target);
+            });
+          },
+          {
+            rootMargin: "0px 0px -12% 0px",
+            threshold: 0.12,
+          }
+        );
+
+        revealTargets.forEach((el) => observer.observe(el));
+      }
+
+      window.addEventListener("scroll", revealInView, { passive: true });
+      window.addEventListener("resize", revealInView);
+      window.addEventListener("load", revealInView);
+      requestAnimationFrame(revealInView);
+    </script>
+  </body>
+</html>

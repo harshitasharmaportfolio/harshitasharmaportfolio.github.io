@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gulaal – Communication Intern</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Silkscreen:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --paper: #f5ede1;
+        --paper2: #ece1d0;
+        --ink: #2a1f1a;
+        --ink-soft: #6b5a50;
+        --line: #d9c9b3;
+        --accent: #c17a52;
+      }
+
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+
+      html, body {
+        background: var(--paper);
+        color: var(--ink);
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "Cormorant Garamond", Georgia, serif;
+        -webkit-font-smoothing: antialiased;
+        font-size: 18px;
+      }
+
+      /* ── Topbar ─────────────────────────────────────── */
+      .topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: 1rem 2rem;
+        border-bottom: 1px solid var(--line);
+        position: sticky; top: 0; z-index: 20;
+        background: rgba(245, 237, 225, 0.88);
+        backdrop-filter: blur(14px);
+      }
+
+      .back-link {
+        font-family: "Silkscreen", sans-serif;
+        font-size: 0.7rem;
+        text-decoration: none;
+        color: var(--ink);
+        border: 1.5px solid var(--ink);
+        border-radius: 999px;
+        padding: 0.45rem 0.9rem;
+        background: var(--paper);
+        transition: background 0.16s;
+      }
+      .back-link:hover { background: var(--paper2); }
+
+      .topbar-title {
+        font-family: "Press Start 2P", cursive;
+        font-size: 0.55rem;
+        color: var(--accent);
+        letter-spacing: 0.04em;
+      }
+
+      /* ── Page intro ─────────────────────────────────── */
+      .page-intro {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2.5rem 2rem 1.5rem;
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 2rem;
+        flex-wrap: wrap;
+        border-bottom: 1px solid var(--line);
+      }
+      .page-intro-left .name {
+        font-family: "Press Start 2P", cursive;
+        font-size: clamp(0.7rem, 1.3vw, 1rem);
+        font-style: normal;
+        font-weight: 400;
+        color: var(--ink);
+        line-height: 1.55;
+      }
+      .page-intro-left .role {
+        margin-top: 0.25rem;
+        font-family: "Silkscreen", sans-serif;
+        font-size: 0.65rem;
+        color: var(--ink-soft);
+        letter-spacing: 0.06em;
+      }
+      .page-intro-right {
+        font-family: "Silkscreen", sans-serif;
+        font-size: 0.65rem;
+        color: var(--ink-soft);
+        text-align: right;
+        letter-spacing: 0.04em;
+      }
+
+      /* ── Section ────────────────────────────────────── */
+      .sec {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 3rem 2rem;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .sec-head {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 2rem;
+        margin-bottom: 1.2rem;
+        flex-wrap: wrap;
+      }
+      .sec-head-left .sec-idx {
+        font-family: "Silkscreen", sans-serif;
+        font-size: 0.62rem;
+        color: var(--ink-soft);
+        letter-spacing: 0.1em;
+        margin-bottom: 0.4rem;
+      }
+      .sec-heading {
+        font-size: clamp(2rem, 4vw, 3.2rem);
+        font-weight: 400;
+        font-style: normal;
+        line-height: 1.15;
+        color: var(--ink);
+      }
+      .sec-heading em { font-style: italic; }
+
+      .sec-tags {
+        display: flex;
+        gap: 0.6rem;
+        align-items: center;
+        flex-wrap: wrap;
+        padding-top: 0.6rem;
+      }
+      .sec-tag {
+        font-family: "Silkscreen", sans-serif;
+        font-size: 0.58rem;
+        letter-spacing: 0.08em;
+        color: var(--ink-soft);
+      }
+      .sec-tag + .sec-tag::before {
+        content: "·";
+        margin-right: 0.6rem;
+      }
+
+      .sec-body {
+        max-width: 75ch;
+        font-size: clamp(1rem, 1.2vw, 1.15rem);
+        line-height: 1.7;
+        color: var(--ink-soft);
+        margin-bottom: 2.2rem;
+      }
+
+      /* ── Image Grid ─────────────────────────────────── */
+      .img-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0.75rem;
+      }
+
+      .img-cell {
+        background: var(--paper2);
+        border-radius: 6px;
+        overflow: hidden;
+        border: 1px solid var(--line);
+        transition: transform 0.22s ease, box-shadow 0.22s ease;
+        cursor: zoom-in;
+      }
+      .img-cell:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 16px 40px rgba(42,31,26,.14);
+      }
+      .img-cell img {
+        display: block;
+        width: 100%;
+        aspect-ratio: 4/5;
+        object-fit: cover;
+      }
+
+      /* ── Footer ─────────────────────────────────────── */
+      .page-footer {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 3rem 2rem;
+        font-size: clamp(1.1rem, 2vw, 1.5rem);
+        font-style: italic;
+        color: var(--ink-soft);
+      }
+
+      /* ── Reveal ─────────────────────────────────────── */
+      .reveal {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.7s ease, transform 0.7s ease;
+        transition-delay: var(--d, 0ms);
+      }
+      .reveal.in { opacity: 1; transform: none; }
+
+      @media (prefers-reduced-motion: reduce) {
+        .reveal { opacity: 1; transform: none; transition: none; }
+      }
+
+      @media (max-width: 900px) {
+        .img-grid { grid-template-columns: repeat(2, 1fr); }
+        .sec-head { flex-direction: column; gap: 0.8rem; }
+      }
+      @media (max-width: 600px) {
+        .topbar { padding: 0.8rem 1rem; }
+        .page-intro, .sec { padding-inline: 1rem; }
+        .img-grid { gap: 0.5rem; }
+        .img-cell img { aspect-ratio: 1; }
+      }
+    </style>
+    <script>if(window.self!==window.top){document.write('<style>.topbar{display:none!important}</style>');}</script>
+  </head>
+  <body>
+
+    <div class="topbar">
+      <a class="back-link" href="index.html">← Back</a>
+      <span class="topbar-title">Gulaal · Communication Intern</span>
+    </div>
+
+    <div class="page-intro reveal">
+      <div class="page-intro-left">
+        <p class="name">Harshita Sharma — Gulaal</p>
+        <p class="role">Communication Intern &nbsp;·&nbsp; Summer '23 &nbsp;·&nbsp; Selected Work &amp; Case Study</p>
+      </div>
+      <div class="page-intro-right">
+        Jaipur, IN<br />Conscious Indian Label
+      </div>
+    </div>
+
+    <!-- ── 01 · Social Media ──────────────────────────── -->
+    <section class="sec">
+      <div class="sec-head">
+        <div class="sec-head-left reveal">
+          <p class="sec-idx">— 01 / Social Media</p>
+          <h2 class="sec-heading">Daily feed, <em>felt &amp; filmed.</em></h2>
+        </div>
+        <div class="sec-tags reveal" style="--d:80ms">
+          <span class="sec-tag">Flatlays</span>
+          <span class="sec-tag">Mood</span>
+          <span class="sec-tag">Reels</span>
+        </div>
+      </div>
+      <p class="sec-body reveal" style="--d:120ms">
+        The social media grid was planned by the social media manager and the tasks were assigned
+        to me accordingly. I clicked flatlays, mood shots and team pictures in the form of
+        photographs — and made reels matching Gulaal's soft, slow aesthetic.
+      </p>
+      <div class="img-grid">
+        <div class="img-cell reveal" style="--d:0ms"><img src="Gulaal/Flatlay (1).jpg"  alt="Pistachio flatlay" loading="lazy" /></div>
+        <div class="img-cell reveal" style="--d:60ms"><img src="Gulaal/flatlayy.jpg"    alt="Flatlay"          loading="lazy" /></div>
+        <div class="img-cell reveal" style="--d:120ms"><img src="Gulaal/FL - 2.jpg"     alt="Flatlay 2"        loading="lazy" /></div>
+        <div class="img-cell reveal" style="--d:180ms"><img src="Gulaal/4.jpg"           alt="Everyday edit"    loading="lazy" /></div>
+        <div class="img-cell reveal" style="--d:60ms"><img src="Gulaal/12(nuetral).jpg" alt="Neutral tones"    loading="lazy" /></div>
+        <div class="img-cell reveal" style="--d:120ms"><img src="Gulaal/22(nuetral).jpg" alt="Neutral tones"   loading="lazy" /></div>
+        <div class="img-cell reveal" style="--d:180ms"><img src="Gulaal/story bg 3.jpg" alt="Reel mood"        loading="lazy" /></div>
+        <div class="img-cell reveal" style="--d:240ms"><img src="Gulaal/Untitled-1.jpg" alt="Content"          loading="lazy" /></div>
+      </div>
+    </section>
+
+    <!-- ── 02 · Website Shoots ───────────────────────── -->
+    <section class="sec">
+      <div class="sec-head">
+        <div class="sec-head-left reveal">
+          <p class="sec-idx">— 02 / Website Shoots</p>
+          <h2 class="sec-heading">Collections, <em>on the record.</em></h2>
+        </div>
+        <div class="sec-tags reveal" style="--d:80ms">
+          <span class="sec-tag">Product</span>
+          <span class="sec-tag">Editorial</span>
+          <span class="sec-tag">On-site</span>
+        </div>
+      </div>
+      <p class="sec-body reveal" style="--d:120ms">
+        Mostly the photoshoots are done for the whole collection at once — but whenever a single
+        garment was launched between seasons, I had to produce the shoot in-house or on-site.
+        These frames are from those in-between launches.
+      </p>
+      <div class="img-grid">
+        <div class="img-cell reveal" style="--d:0ms"><img src="Gulaal/website-1.jpg"       alt="Editorial"      loading="lazy" /></div>
+        <div class="img-cell reveal" style="--d:60ms"><img src="Gulaal/DSC09882.JPG"        alt="On-site shoot"  loading="lazy" /></div>
+        <div class="img-cell reveal" style="--d:120ms"><img src="Gulaal/DSC09900.JPG"       alt="Through arch"   loading="lazy" /></div>
+        <div class="img-cell reveal" style="--d:180ms"><img src="Gulaal/DSC09912.JPG"       alt="Block print"    loading="lazy" /></div>
+        <div class="img-cell reveal" style="--d:60ms"><img src="Gulaal/website - 3.jpg"    alt="Website shoot"  loading="lazy" /></div>
+        <div class="img-cell reveal" style="--d:120ms"><img src="Gulaal/website 4.jpg"      alt="Website shoot"  loading="lazy" /></div>
+        <div class="img-cell reveal" style="--d:180ms"><img src="Gulaal/Untitled-1 copy.jpg" alt="Product detail" loading="lazy" /></div>
+      </div>
+    </section>
+
+    <footer class="page-footer reveal">— with love, Harshita.</footer>
+
+    <script>
+      var revealEls = document.querySelectorAll('.reveal');
+      if ('IntersectionObserver' in window) {
+        var obs = new IntersectionObserver(function(entries) {
+          entries.forEach(function(e) {
+            if (!e.isIntersecting) return;
+            e.target.classList.add('in');
+            obs.unobserve(e.target);
+          });
+        }, { rootMargin: '0px 0px -8% 0px', threshold: 0.1 });
+        revealEls.forEach(function(el) { obs.observe(el); });
+      } else {
+        revealEls.forEach(function(el) { el.classList.add('in'); });
+      }
+    </script>
+
+  </body>
+</html>

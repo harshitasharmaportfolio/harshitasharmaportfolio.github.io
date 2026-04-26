@@ -1,0 +1,494 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Harshita Sharma</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Silkscreen:wght@400;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="is-loading">
+    <script>
+      /* Prevent browser scroll-restoration from dumping user mid-page on refresh */
+      if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+      window.scrollTo(0, 0);
+      /* Also strip any hash from the URL so anchor links don't auto-scroll on reload */
+      if (window.location.hash) {
+        history.replaceState('', document.title, window.location.pathname + window.location.search);
+      }
+      window.addEventListener('load', function () { window.scrollTo(0, 0); });
+    </script>
+
+    <!-- Loader -->
+    <div id="loader" class="loader" aria-hidden="true">
+      <img src="loading_element.png" alt="" class="loader-image" />
+    </div>
+
+    <!-- ── NAV ───────────────────────────────────────────── -->
+    <nav class="site-nav">
+      <a href="#" class="nav-logo-link">
+        <img src="hero section elements/logo.png" alt="Harshita" class="nav-logo-img" />
+      </a>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#work">Work</a>
+        <a href="#contact">Connect</a>
+      </div>
+    </nav>
+
+    <!-- ── 1 · ABOUT ─────────────────────────────────────── -->
+    <section id="about" class="s-about">
+      <!-- Draggable stickers -->
+      <img class="sticker" src="hero section elements/books.png"        alt="" style="top:13%;left:5%;width:78px;transform:rotate(-9deg)"   />
+      <img class="sticker" src="hero section elements/camera.png"       alt="" style="top:71%;left:3%;width:58px;transform:rotate(6deg)"    />
+      <img class="sticker" src="hero section elements/jhumka.png"       alt="" style="top:15%;right:5%;width:90px;transform:rotate(-4deg)"  />
+      <img class="sticker" src="hero section elements/journal.png"      alt="" style="top:63%;right:4%;width:62px;transform:rotate(13deg)"  />
+      <img class="sticker" src="hero section elements/makeup.png"       alt="" style="top:81%;left:19%;width:82px;transform:rotate(-8deg)"  />
+      <img class="sticker" src="hero section elements/star.png"         alt="" style="top:6%;left:54%;width:44px;transform:rotate(17deg)"   />
+      <!-- Chai sticker — swaps filled→empty on hover/drag -->
+      <div class="sticker sticker--chai" style="top:38%;left:82%;transform:rotate(-7deg)">
+        <img class="chai-img" src="hero section elements/chai_filled.png" alt="chai" />
+
+      </div>
+      <img class="sticker" src="hero section elements/studio light.png" alt="" style="top:73%;right:17%;width:100px;transform:rotate(-14deg)"/>
+      <img class="sticker" src="hero section elements/tour eiffel.png"  alt="" style="top:4%;right:27%;width:52px;transform:rotate(8deg)"   />
+      <img class="sticker" src="hero section elements/yoga mat.png"     alt="" style="top:87%;left:47%;width:68px;transform:rotate(-6deg)"  />
+      <div class="about-inner">
+        <div class="about-avatar">
+          <img class="char-front" src="hero section elements/character_front.png" alt="Harshita" />
+          <img class="char-side"  src="hero section elements/character_side.png"  alt="Harshita" />
+        </div>
+        <div class="about-text">
+          <h1 id="aboutTitle" data-type="Hi, I am Harshita Sharma"></h1>
+          <p class="about-reveal">
+            I'm Harshita, a Fashion Communication graduate from NIFT Jodhpur, currently finishing
+            my Master's in Fashion Design and Luxury Management in Paris. I work across photography,
+            art direction, and visual storytelling, with a soft spot for brands that actually have
+            something to say. Looking for opportunities in art direction and creative strategy.
+          </p>
+          <div class="about-btns about-reveal">
+            <button class="btn-outline" id="bioReadMoreBtn">Read more deeply</button>
+            <a class="btn-outline" href="cv.html">Go to my resume</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 2 · WORK CARDS (stacked parallax) ─────────────── -->
+    <section id="work" class="s-cards">
+      <div class="cards-track">
+
+        <div class="stack-card card-projects" data-href="#projects">
+          <div class="card-inner">
+            <span class="card-label">Projects</span>
+            <div class="card-img-wrap">
+              <img src="Project Asli/1.png" alt="Projects" />
+            </div>
+            <p class="card-desc">Selected brand &amp; editorial work</p>
+            <span class="card-cta">View ↗</span>
+          </div>
+        </div>
+
+        <div class="stack-card card-photo" data-href="#gallery">
+          <div class="card-inner">
+            <span class="card-label">Photography</span>
+            <div class="card-img-wrap">
+              <img src="elements/portraits/1.png" alt="Photography" />
+            </div>
+            <p class="card-desc">Portrait &amp; editorial photography</p>
+            <span class="card-cta">View ↗</span>
+          </div>
+        </div>
+
+        <div class="stack-card card-graphics" data-href="#graphicfolio">
+          <div class="card-inner">
+            <span class="card-label">Graphics</span>
+            <div class="card-img-wrap">
+              <img src="elements/posterfolio/mainposter2.png" alt="Graphics" />
+            </div>
+            <p class="card-desc">Poster design &amp; graphic work</p>
+            <span class="card-cta">View ↗</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── 3 · SELECTED WORKS ─────────────────────────────── -->
+    <section id="projects" class="s-works">
+      <div class="works-inner">
+        <h2 class="section-title" data-anim>Selective works.</h2>
+        <p class="section-sub" data-anim style="--d:100ms">things I made with love ✦</p>
+
+        <!-- Primary 3 cards always visible -->
+        <div class="works-grid" id="mainWorksGrid">
+
+          <!-- 1. Asli — star project -->
+          <a class="work-card" href="asli-modern-indian-jewellery.html" data-overlay>
+            <div class="star-badge">⭐ STAR PROJECT</div>
+            <div class="work-img">
+              <img src="Project Asli/1.png" alt="Asli" />
+            </div>
+            <div class="work-body">
+              <span class="work-tag">ART DIRECTION</span>
+              <h3>Asli (Modern Indian Jewellery)</h3>
+              <p>Self-initiated brand world focused on crediting artisans and origin.</p>
+              <span class="work-link">open ↗</span>
+            </div>
+          </a>
+
+          <!-- 2. Gulaal -->
+          <a class="work-card" href="gulaal.html" data-overlay>
+            <div class="work-img">
+              <img src="Gulaal/website-1.jpg" alt="Gulaal" />
+            </div>
+            <div class="work-body">
+              <span class="work-tag">INTERNSHIP · COMMUNICATION</span>
+              <h3>Gulaal</h3>
+              <p>Six months inside a conscious Indian label — content, shoots & brand communication.</p>
+              <span class="work-link">open ↗</span>
+            </div>
+          </a>
+
+          <!-- 3. Loewe -->
+          <a class="work-card" href="loewe.html" data-overlay>
+            <div class="work-img">
+              <img src="loewe/Loewe_page-0001.jpg" alt="Loewe" />
+            </div>
+            <div class="work-body">
+              <span class="work-tag">CAMPAIGN STUDY</span>
+              <h3>Loewe</h3>
+              <p>Collaborative campaign concept translated into an editorial sequence.</p>
+              <span class="work-link">open ↗</span>
+            </div>
+          </a>
+
+        </div>
+
+        <!-- Expand row -->
+        <div class="works-expand-row">
+          <button class="works-expand-btn" id="worksExpandBtn" aria-expanded="false">
+            View more ↓
+          </button>
+        </div>
+
+        <!-- Hidden extra cards: Moschino + Acne -->
+        <div class="works-extra-grid" id="worksExtraGrid" aria-hidden="true">
+
+          <a class="work-card" href="moschino.html" data-overlay>
+            <div class="work-img">
+              <img src="Moschino/1.png" alt="Moschino" />
+            </div>
+            <div class="work-body">
+              <span class="work-tag">EDITORIAL</span>
+              <h3>Moschino</h3>
+              <p>A responsive PDF presentation laid out as a single project page.</p>
+              <span class="work-link">open ↗</span>
+            </div>
+          </a>
+
+          <a class="work-card" href="acne-studio.html" data-overlay>
+            <div class="work-img">
+              <img src="acne studios/2.png" alt="Acne Studios" />
+            </div>
+            <div class="work-body">
+              <span class="work-tag">RETAIL STUDY</span>
+              <h3>Acne Studios</h3>
+              <p>A visual sequence arranged from the Acne Studios folder.</p>
+              <span class="work-link">open ↗</span>
+            </div>
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 4 · PHOTOGRAPHY (two-row marquee + dock) ──────── -->
+    <section id="gallery" class="s-gallery">
+      <div class="gallery-header">
+        <h2 class="section-title" data-anim>Photography</h2>
+        <p class="gallery-quote" data-anim style="--d:100ms">Photography is where it started. I shoot studio, product, and sometimes outdoors. I love the whole process of it</p>
+      </div>
+
+      <!-- Row 1: Portrait Photography -->
+      <div class="gallery-row-wrap">
+        <div class="gallery-row-head">
+          <p class="gallery-row-label">Portrait</p>
+          <div class="marquee-nav-btns">
+            <button class="marquee-prev" aria-label="Previous">←</button>
+            <button class="marquee-next" aria-label="Next">→</button>
+          </div>
+        </div>
+        <div class="marquee-outer" data-gallery-id="portraits">
+          <div class="marquee-track">
+            <div class="marquee-set">
+              <div class="m-img" data-gallery="portraits"><img src="elements/portraits/1.png"        alt="Portrait" /></div>
+              <div class="m-img" data-gallery="portraits"><img src="elements/portraits/2.png"        alt="Portrait" /></div>
+              <div class="m-img" data-gallery="portraits"><img src="elements/portraits/3.png"        alt="Portrait" /></div>
+              <div class="m-img" data-gallery="portraits"><img src="elements/portraits/4.png"        alt="Portrait" /></div>
+              <div class="m-img" data-gallery="portraits"><img src="elements/portraits/5.png"        alt="Portrait" /></div>
+              <div class="m-img" data-gallery="portraits"><img src="elements/portraits/6.png"        alt="Portrait" /></div>
+              <div class="m-img" data-gallery="portraits"><img src="elements/portraits/15.png"       alt="Portrait" /></div>
+              <div class="m-img" data-gallery="portraits"><img src="elements/portraits/16.png"       alt="Portrait" /></div>
+              <div class="m-img" data-gallery="portraits"><img src="elements/portraits/DSC02256.png" alt="Portrait" /></div>
+              <div class="m-img" data-gallery="portraits"><img src="elements/portraits/DSC02719.png" alt="Portrait" /></div>
+              <div class="m-img" data-gallery="portraits"><img src="elements/portraits/final 1.png"  alt="Portrait" /></div>
+              <div class="m-img" data-gallery="portraits"><img src="elements/portraits/3.1.png"      alt="Portrait" /></div>
+            </div>
+            <div class="marquee-set" aria-hidden="true">
+              <div class="m-img" data-gallery="portraits"><img src="elements/portraits/1.png"        alt="" /></div>
+              <div class="m-img" data-gallery="portraits"><img src="elements/portraits/2.png"        alt="" /></div>
+              <div class="m-img" data-gallery="portraits"><img src="elements/portraits/3.png"        alt="" /></div>
+              <div class="m-img" data-gallery="portraits"><img src="elements/portraits/4.png"        alt="" /></div>
+              <div class="m-img" data-gallery="portraits"><img src="elements/portraits/5.png"        alt="" /></div>
+              <div class="m-img" data-gallery="portraits"><img src="elements/portraits/6.png"        alt="" /></div>
+              <div class="m-img" data-gallery="portraits"><img src="elements/portraits/15.png"       alt="" /></div>
+              <div class="m-img" data-gallery="portraits"><img src="elements/portraits/16.png"       alt="" /></div>
+              <div class="m-img" data-gallery="portraits"><img src="elements/portraits/DSC02256.png" alt="" /></div>
+              <div class="m-img" data-gallery="portraits"><img src="elements/portraits/DSC02719.png" alt="" /></div>
+              <div class="m-img" data-gallery="portraits"><img src="elements/portraits/final 1.png"  alt="" /></div>
+              <div class="m-img" data-gallery="portraits"><img src="elements/portraits/3.1.png"      alt="" /></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Row 2: Product Photography -->
+      <div class="gallery-row-wrap">
+        <div class="gallery-row-head">
+          <p class="gallery-row-label">Product</p>
+          <div class="marquee-nav-btns">
+            <button class="marquee-prev" aria-label="Previous">←</button>
+            <button class="marquee-next" aria-label="Next">→</button>
+          </div>
+        </div>
+        <div class="marquee-outer marquee-outer--rtl" data-gallery-id="products">
+          <div class="marquee-track marquee-track--slow">
+            <div class="marquee-set">
+              <div class="m-img m-img--product" data-gallery="products"><img src="product/1.png"          alt="Product" /></div>
+              <div class="m-img m-img--product" data-gallery="products"><img src="product/2.png"          alt="Product" /></div>
+              <div class="m-img m-img--product" data-gallery="products"><img src="product/3.png"          alt="Product" /></div>
+              <div class="m-img m-img--product" data-gallery="products"><img src="product/4.png"          alt="Product" /></div>
+              <div class="m-img m-img--product" data-gallery="products"><img src="product/rg1.png"        alt="Product" /></div>
+              <div class="m-img m-img--product" data-gallery="products"><img src="product/rg2.png"        alt="Product" /></div>
+              <div class="m-img m-img--product" data-gallery="products"><img src="product/stb1.png"       alt="Product" /></div>
+              <div class="m-img m-img--product" data-gallery="products"><img src="product/stn1.png"       alt="Product" /></div>
+              <div class="m-img m-img--product" data-gallery="products"><img src="product/DSC07481.JPG"   alt="Product" /></div>
+              <div class="m-img m-img--product" data-gallery="products"><img src="product/DSC07487.JPG"   alt="Product" /></div>
+              <div class="m-img m-img--product" data-gallery="products"><img src="product/DSC07513.JPG"   alt="Product" /></div>
+              <div class="m-img m-img--product" data-gallery="products"><img src="product/DSC07549.JPG"   alt="Product" /></div>
+              <div class="m-img m-img--product" data-gallery="products"><img src="product/DSC07604.JPG"   alt="Product" /></div>
+              <div class="m-img m-img--product" data-gallery="products"><img src="product/DSC07615.JPG"   alt="Product" /></div>
+              <div class="m-img m-img--product" data-gallery="products"><img src="product/DSC07761.JPG"   alt="Product" /></div>
+              <div class="m-img m-img--product" data-gallery="products"><img src="product/DSC07771.JPG"   alt="Product" /></div>
+              <div class="m-img m-img--product" data-gallery="products"><img src="product/DSC07878.JPG"   alt="Product" /></div>
+            </div>
+            <div class="marquee-set" aria-hidden="true">
+              <div class="m-img m-img--product" data-gallery="products"><img src="product/1.png"          alt="" /></div>
+              <div class="m-img m-img--product" data-gallery="products"><img src="product/2.png"          alt="" /></div>
+              <div class="m-img m-img--product" data-gallery="products"><img src="product/3.png"          alt="" /></div>
+              <div class="m-img m-img--product" data-gallery="products"><img src="product/4.png"          alt="" /></div>
+              <div class="m-img m-img--product" data-gallery="products"><img src="product/rg1.png"        alt="" /></div>
+              <div class="m-img m-img--product" data-gallery="products"><img src="product/rg2.png"        alt="" /></div>
+              <div class="m-img m-img--product" data-gallery="products"><img src="product/stb1.png"       alt="" /></div>
+              <div class="m-img m-img--product" data-gallery="products"><img src="product/stn1.png"       alt="" /></div>
+              <div class="m-img m-img--product" data-gallery="products"><img src="product/DSC07481.JPG"   alt="" /></div>
+              <div class="m-img m-img--product" data-gallery="products"><img src="product/DSC07487.JPG"   alt="" /></div>
+              <div class="m-img m-img--product" data-gallery="products"><img src="product/DSC07513.JPG"   alt="" /></div>
+              <div class="m-img m-img--product" data-gallery="products"><img src="product/DSC07549.JPG"   alt="" /></div>
+              <div class="m-img m-img--product" data-gallery="products"><img src="product/DSC07604.JPG"   alt="" /></div>
+              <div class="m-img m-img--product" data-gallery="products"><img src="product/DSC07615.JPG"   alt="" /></div>
+              <div class="m-img m-img--product" data-gallery="products"><img src="product/DSC07761.JPG"   alt="" /></div>
+              <div class="m-img m-img--product" data-gallery="products"><img src="product/DSC07771.JPG"   alt="" /></div>
+              <div class="m-img m-img--product" data-gallery="products"><img src="product/DSC07878.JPG"   alt="" /></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 5 · GRAPHICFOLIO (stacked parallax) ───────────── -->
+    <section id="graphicfolio" class="s-graphic">
+      <div class="graphic-inner">
+        <h2 class="section-title" data-anim>Graphicfolio</h2>
+        <div class="poster-track">
+          <div class="poster-wrap pc-p1">
+            <div class="poster-card">
+              <img src="posterfolio/poster1.png" alt="Poster 1" loading="lazy" />
+            </div>
+          </div>
+          <div class="poster-wrap pc-p2">
+            <div class="poster-card">
+              <img src="posterfolio/13_2.png" alt="Poster 2" loading="lazy" />
+            </div>
+          </div>
+          <div class="poster-wrap pc-p3">
+            <div class="poster-card">
+              <img src="posterfolio/mainposter2.png" alt="Poster 3" loading="lazy" />
+            </div>
+          </div>
+          <div class="poster-wrap pc-p4">
+            <div class="poster-card">
+              <img src="posterfolio/1.png" alt="Poster 4" loading="lazy" />
+            </div>
+          </div>
+          <div class="poster-wrap pc-p5">
+            <div class="poster-card">
+              <img src="posterfolio/India Habitat Center, Lodhi road, Delhi 8th-9th May.png" alt="Poster 5" loading="lazy" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 6 · CONNECT / FOOTER ───────────────────────────── -->
+    <section id="contact" class="s-contact">
+      <div class="contact-inner">
+        <h2>Connect with me.</h2>
+        <div class="social-row">
+          <a href="https://www.behance.net/harshi100552f4" target="_blank" rel="noreferrer">Behance ↗</a>
+          <a href="https://www.linkedin.com/in/harshitasharma-fr" target="_blank" rel="noreferrer">Linkedin ↗</a>
+        </div>
+        <p class="contact-copy">
+          I would love to work and learn in Art direction, Creative Branding and Advertising.
+          Please contact me for any leads. You will find my email ID below this. Thanks.
+        </p>
+        <a class="contact-email" href="mailto:harshita.sharma2@grenoble-em.com">✉ harshita.sharma2@grenoble-em.com</a>
+        <a class="back-top" href="#about">↑ BACK TO TOP</a>
+      </div>
+    </section>
+
+    <!-- ── BIO OVERLAY ──────────────────────────────────────── -->
+    <div id="bioOverlay" class="bio-overlay" aria-hidden="true">
+      <div class="bio-ol-backdrop" id="bioOlBackdrop"></div>
+      <div class="bio-ol-panel">
+        <button class="bio-ol-close" id="bioOlClose" aria-label="Close">✕</button>
+        <h2 class="bio-ol-title">A little more about me.</h2>
+        <div class="bio-ol-body">
+          <p>I grew up in a small town in Rajasthan. For eighteen years, my world was the same school, the same faces, the same streets. I didn't know then that all those quiet years of watching and noticing were actually shaping me.</p>
+          <p>NIFT changed everything. That's where I found photography and I fell in love with the whole process, from the idea to the final image. For me, photography wasn't just about taking pictures. It was the first time I could say what I really felt without needing words. I have always had a lot going on inside, and photography gave that somewhere to go.</p>
+          <p>During COVID, I had no studio, no equipment. So I made my own lights and used things from around the house to create photographs. I didn't stop. That's just how I am with things I care about.</p>
+          <p>After NIFT, I got offer letters from schools I had dreamed of: RCA, Speos, Parsons, Leeds. But visa issues and financial reality got in the way, and I ended up in Grenoble instead. Honestly, it became one of the best things that happened to me. It felt like home in a way I didn't expect. Now I'm in Paris for my second year, still finding my place here.</p>
+          <p>The thing I keep coming back to is this: visuals, books, stories, concepts, they all connect for me and turn into something: language, storytelling, luxury, and then back to visuals again. It's a loop I live in. And that's exactly why I want to work in art direction, because that's the space where an image becomes a story, and a story becomes the DNA of a brand.</p>
+          <p>There is a lot more to me than what I usually show. I don't always say it out loud. But it finds its way into everything I make.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── POSTER OVERLAY ───────────────────────────────────── -->
+    <div id="posterOverlay" class="poster-overlay" aria-hidden="true">
+      <div class="poster-ol-backdrop" id="posterOlBackdrop"></div>
+      <button class="poster-ol-close" id="posterOlClose" aria-label="Close">✕</button>
+      <img id="posterOlImg" src="" alt="Poster" />
+    </div>
+
+    <!-- ── PROJECT OVERLAY ───────────────────────────────── -->
+    <div id="projectOverlay" class="project-overlay" aria-hidden="true">
+      <div class="overlay-backdrop" id="overlayBackdrop"></div>
+      <div class="overlay-frame-wrap">
+        <button class="overlay-close" id="overlayClose" aria-label="Close">✕</button>
+        <iframe id="projectFrame" src="" title="Project" allowfullscreen></iframe>
+      </div>
+    </div>
+
+    <!-- ── GALLERY IMAGE OVERLAY ─────────────────────────── -->
+    <div id="galleryOverlay" class="gallery-overlay" aria-hidden="true">
+      <div class="gallery-ol-backdrop" id="galleryOlBackdrop"></div>
+      <div class="gallery-ol-content">
+        <button class="gallery-ol-close" id="galleryOlClose" aria-label="Close">✕</button>
+        <button class="gallery-ol-nav gallery-ol-prev" id="galleryPrev" aria-label="Previous">←</button>
+        <div class="gallery-ol-img-wrap">
+          <img id="galleryOlImg" src="" alt="" />
+        </div>
+        <button class="gallery-ol-nav gallery-ol-next" id="galleryNext" aria-label="Next">→</button>
+      </div>
+    </div>
+
+    <!-- ── CUSTOM CURSOR ────────────────────────────────────── -->
+    <img id="custom-cursor" src="hero section elements/cursor.png" alt="" aria-hidden="true" />
+
+    <!-- Shuffle portraits within portrait row, products within product row (kept separate) -->
+    <script>
+    (function () {
+      var portraits = [
+        'elements/portraits/1.png',
+        'elements/portraits/2.png',
+        'elements/portraits/3.png',
+        'elements/portraits/3.1.png',
+        'elements/portraits/4.png',
+        'elements/portraits/5.png',
+        'elements/portraits/6.png',
+        'elements/portraits/15.png',
+        'elements/portraits/16.png',
+        'elements/portraits/DSC02256.png',
+        'elements/portraits/DSC02719.png',
+        'elements/portraits/final 1.png',
+        'elements/portraits/IMG_2362.png',
+        'elements/portraits/IMG_2448.png',
+        'elements/portraits/IMG_2487.png',
+        'elements/portraits/expand image 7.png',
+        'elements/portraits/expand image 8.png',
+        'elements/portraits/expand picture 5.png',
+      ];
+      var products = [
+        'product/1.png',
+        'product/2.png',
+        'product/3.png',
+        'product/4.png',
+        'product/rg1.png',
+        'product/rg2.png',
+        'product/stb1.png',
+        'product/stn1.png',
+        'product/DSC07481.JPG',
+        'product/DSC07487.JPG',
+        'product/DSC07513.JPG',
+        'product/DSC07549.JPG',
+        'product/DSC07604.JPG',
+        'product/DSC07615.JPG',
+        'product/DSC07761.JPG',
+        'product/DSC07771.JPG',
+        'product/DSC07878.JPG',
+      ];
+
+      function shuffle(arr) {
+        var a = arr.slice();
+        for (var i = a.length - 1; i > 0; i--) {
+          var j = Math.floor(Math.random() * (i + 1));
+          var t = a[i]; a[i] = a[j]; a[j] = t;
+        }
+        return a;
+      }
+
+      function imgNode(src, gid, withAlt) {
+        return '<div class="m-img" data-gallery="' + gid + '">'
+          + '<img src="' + src + '" alt="' + (withAlt ? 'Photography' : '') + '" loading="lazy" />'
+          + '</div>';
+      }
+
+      function buildTrack(row, gid) {
+        var set = row.map(function (s) { return imgNode(s, gid, true); }).join('');
+        var dup = row.map(function (s) { return imgNode(s, gid, false); }).join('');
+        return '<div class="marquee-set">' + set + '</div>'
+             + '<div class="marquee-set" aria-hidden="true">' + dup + '</div>';
+      }
+
+      var t1 = document.querySelector('.marquee-outer[data-gallery-id="portraits"] .marquee-track');
+      var t2 = document.querySelector('.marquee-outer[data-gallery-id="products"] .marquee-track');
+      if (t1) t1.innerHTML = buildTrack(shuffle(portraits), 'portraits');
+      if (t2) t2.innerHTML = buildTrack(shuffle(products),  'products');
+    })();
+    </script>
+
+    <script src="main.js"></script>
+    <script>
+      setTimeout(function () {
+        document.body.classList.remove('is-loading');
+      }, 2000);
+    </script>
+  </body>
+</html>
