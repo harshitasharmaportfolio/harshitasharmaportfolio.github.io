@@ -294,6 +294,7 @@ body.is-loading .loader { display: flex; }
 @media (max-width: 700px) {
   .about-inner { grid-template-columns: 1fr; text-align: center; justify-items: center; }
   .about-text p { max-width: 100%; }
+  .sticker { display: none; }
 }
 
 /* ── 2 · STACKED CARDS ──────────────────────────────────── */

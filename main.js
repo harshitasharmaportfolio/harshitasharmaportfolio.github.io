@@ -23,7 +23,7 @@
     var raw   = clamp(-rect.top / total, 0, 1);
     var p     = smoothstep(clamp(raw / 0.65, 0, 1));
     var cw    = cardEls[0].offsetWidth;
-    var step  = cw * 1.18;
+    var step  = Math.min(cw * 1.18, (window.innerWidth - cw) / 2 - 8);
 
     var stacked = [[0, 14, -4], [0, 0, 2], [0, -11, -2]];
     var spread  = [[-step, 0, -5], [0, 0, 0], [step, 0, 5]];
