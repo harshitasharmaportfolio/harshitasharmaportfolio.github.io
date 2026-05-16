@@ -536,7 +536,7 @@ body.is-loading .loader { display: flex; }
   color: var(--primary);
 }
 .marquee-nav-btns {
-  display: flex;
+  display: none;
   gap: .5rem;
 }
 .marquee-prev,
@@ -575,6 +575,8 @@ body.is-loading .loader { display: flex; }
 
 .m-img {
   flex-shrink: 0;
+  display: flex;
+  align-items: stretch;
   height: clamp(200px, 28vh, 360px);
   width: auto;
   border-radius: 10px;
@@ -589,6 +591,7 @@ body.is-loading .loader { display: flex; }
 .m-img img {
   height: 100%;
   width: auto;
+  flex-shrink: 0;
   display: block;
   pointer-events: none;
 }
@@ -1053,6 +1056,7 @@ body.is-loading .loader { display: flex; }
     box-shadow: none;
   }
   .poster-wrap:hover .poster-card { box-shadow: none; }
+  .marquee-nav-btns { display: flex; }
   .poster-mobile-nav {
     display: flex;
     justify-content: center;
