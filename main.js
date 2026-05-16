@@ -18,6 +18,10 @@
 
   function updateCards() {
     if (!cardsSection || !cardEls[0]) return;
+    if (window.innerWidth <= 700) {
+      cardEls.forEach(function (card) { if (card) card.style.transform = ''; });
+      return;
+    }
     var rect  = cardsSection.getBoundingClientRect();
     var total = cardsSection.offsetHeight - window.innerHeight;
     var raw   = clamp(-rect.top / total, 0, 1);
@@ -53,6 +57,10 @@
 
   function updatePosters() {
     if (!graphicSection || !posterWraps[0]) return;
+    if (window.innerWidth <= 700) {
+      posterWraps.forEach(function (wrap) { if (wrap) wrap.style.transform = ''; });
+      return;
+    }
     var rect = graphicSection.getBoundingClientRect();
     var raw  = clamp(
       (window.innerHeight - rect.top) / (window.innerHeight * 0.85),
@@ -650,6 +658,22 @@
       }
     });
   }
+
+  /* ── Posterfolio mobile prev/next ───────────────────────*/
+
+  var posterTrackEl  = document.getElementById('posterTrack');
+  var posterMobPrev  = document.getElementById('posterMobPrev');
+  var posterMobNext  = document.getElementById('posterMobNext');
+
+  function posterMobStep(dir) {
+    if (!posterTrackEl) return;
+    var card = posterTrackEl.querySelector('.poster-wrap');
+    var step = card ? card.offsetWidth + 14 : 164;
+    posterTrackEl.scrollBy({ left: dir * step, behavior: 'smooth' });
+  }
+
+  if (posterMobPrev) posterMobPrev.addEventListener('click', function () { posterMobStep(-1); });
+  if (posterMobNext) posterMobNext.addEventListener('click', function () { posterMobStep(1); });
 
   /* ── Scroll & resize ─────────────────────────────────────*/
 
