@@ -3,7 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Harshita Sharma</title>
+    <title>Harshita Sharma | Visual Content Designer &amp; Creative</title>
+    <meta name="description" content="Visual content, graphic design, photography and social content by Harshita Sharma. Based in Paris, open to creative opportunities." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -12,334 +13,206 @@
     />
     <link rel="stylesheet" href="styles.css" />
   </head>
-  <body class="is-loading">
-    <script>
-      /* Prevent browser scroll-restoration from dumping user mid-page on refresh */
-      if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
-      window.scrollTo(0, 0);
-      /* Also strip any hash from the URL so anchor links don't auto-scroll on reload */
-      if (window.location.hash) {
-        history.replaceState('', document.title, window.location.pathname + window.location.search);
-      }
-      window.addEventListener('load', function () { window.scrollTo(0, 0); });
-    </script>
-
-    <!-- Loader -->
-    <div id="loader" class="loader" aria-hidden="true">
-      <img src="loading_element.png" alt="" class="loader-image" />
-    </div>
-
+  <body class="portfolio-home">
+    <a class="skip-link" href="#browse">Skip to portfolio</a>
     <!-- ── NAV ───────────────────────────────────────────── -->
-    <nav class="site-nav">
-      <a href="#" class="nav-logo-link">
+    <nav class="site-nav" aria-label="Main navigation">
+      <a href="#home" class="nav-logo-link">
         <img src="hero section elements/logo.png" alt="Harshita" class="nav-logo-img" />
       </a>
       <div class="nav-links">
+        <a href="#graphicfolio">Graphics</a>
+        <a href="#gallery">Photography</a>
+        <a href="#work">Projects</a>
         <a href="#about">About</a>
-        <a href="#work">Work</a>
-        <a href="#contact">Connect</a>
+        <a href="#contact">Contact</a>
       </div>
     </nav>
 
-    <!-- ── 1 · ABOUT ─────────────────────────────────────── -->
-    <section id="about" class="s-about">
+    <!-- ── 1 · HERO ─────────────────────────────────────── -->
+    <main>
+    <section id="home" class="s-about">
       <!-- Draggable stickers -->
-      <img class="sticker" src="hero section elements/books.png"        alt="" style="top:13%;left:5%;width:78px;transform:rotate(-9deg)"   />
-      <img class="sticker" src="hero section elements/camera.png"       alt="" style="top:71%;left:3%;width:58px;transform:rotate(6deg)"    />
-      <img class="sticker" src="hero section elements/jhumka.png"       alt="" style="top:15%;right:5%;width:90px;transform:rotate(-4deg)"  />
-      <img class="sticker" src="hero section elements/journal.png"      alt="" style="top:63%;right:4%;width:62px;transform:rotate(13deg)"  />
-      <img class="sticker" src="hero section elements/makeup.png"       alt="" style="top:81%;left:19%;width:82px;transform:rotate(-8deg)"  />
-      <img class="sticker" src="hero section elements/star.png"         alt="" style="top:6%;left:54%;width:44px;transform:rotate(17deg)"   />
+      <img class="sticker" src="hero section elements/books.png"        alt="" style="top:var(--sticker-top,17%);left:6%;width:var(--sticker-width,66px);transform:rotate(-12deg)"   />
+      <img class="sticker" src="hero section elements/camera.png"       alt="" style="top:var(--sticker-top,60%);left:4%;width:var(--sticker-width,55px);transform:rotate(8deg)"    />
+      <img class="sticker" src="hero section elements/jhumka.png"       alt="" style="top:var(--sticker-top,20%);right:var(--sticker-right,5%);width:var(--sticker-width,72px);transform:rotate(-7deg)"  />
+      <img class="sticker" src="hero section elements/journal.png"      alt="" style="top:var(--sticker-top,71%);right:var(--sticker-right,6%);width:var(--sticker-width,56px);transform:rotate(13deg)"  />
+      <img class="sticker" src="hero section elements/makeup.png"       alt="" style="top:var(--sticker-top,82%);left:20%;width:var(--sticker-width,62px);transform:rotate(-8deg)"  />
+      <img class="sticker" src="hero section elements/star.png"         alt="" style="top:var(--sticker-top,14%);left:48%;width:var(--sticker-width,38px);transform:rotate(17deg)"   />
       <!-- Chai sticker — swaps filled→empty on hover/drag -->
-      <div class="sticker sticker--chai" style="top:38%;left:82%;transform:rotate(-7deg)">
+      <div class="sticker sticker--chai" style="top:43%;left:88%;transform:rotate(-7deg)">
         <img class="chai-img" src="hero section elements/chai_filled.png" alt="chai" />
 
       </div>
-      <img class="sticker" src="hero section elements/studio light.png" alt="" style="top:73%;right:17%;width:100px;transform:rotate(-14deg)"/>
-      <img class="sticker" src="hero section elements/tour eiffel.png"  alt="" style="top:4%;right:27%;width:52px;transform:rotate(8deg)"   />
-      <img class="sticker" src="hero section elements/yoga mat.png"     alt="" style="top:87%;left:47%;width:68px;transform:rotate(-6deg)"  />
+      <img class="sticker" src="hero section elements/studio light.png" alt="" style="top:var(--sticker-top,79%);right:var(--sticker-right,24%);width:var(--sticker-width,70px);transform:rotate(-14deg)"/>
+      <img class="sticker" src="hero section elements/tour eiffel.png"  alt="" style="top:var(--sticker-top,15%);right:var(--sticker-right,23%);width:var(--sticker-width,46px);transform:rotate(8deg)"   />
+      <img class="sticker" src="hero section elements/yoga mat.png"     alt="" style="top:var(--sticker-top,86%);left:47%;width:var(--sticker-width,54px);transform:rotate(-6deg)"  />
+      <a class="sticker sticker--social sticker--linkedin" href="https://www.linkedin.com/in/harshitasharma-fr" target="_blank" rel="noreferrer" aria-label="LinkedIn profile" draggable="false" style="top:var(--social-top,31%);left:var(--social-left,7%);transform:rotate(-11deg)">
+        <img src="hero section elements/linkedin.png" alt="" draggable="false" />
+      </a>
+      <a class="sticker sticker--social sticker--behance" href="https://www.behance.net/harshi100552f4" target="_blank" rel="noreferrer" aria-label="Behance profile" draggable="false" style="top:var(--social-top,67%);left:var(--social-left,87%);transform:rotate(9deg)">
+        <img src="hero section elements/behance.png" alt="" draggable="false" />
+      </a>
+      <p class="hero-note">go on, move things around<br />p.s. the chai stays with me</p>
       <div class="about-inner">
         <div class="about-avatar">
           <img class="char-front" src="hero section elements/character_front.png" alt="Harshita" />
           <img class="char-side"  src="hero section elements/character_side.png"  alt="Harshita" />
         </div>
-        <div class="about-text">
-          <h1 id="aboutTitle" data-type="Hi, I am Harshita Sharma"></h1>
-          <p class="about-reveal">
-            I'm Harshita, a Fashion Communication graduate from NIFT Jodhpur, currently finishing
-            my Master's in Fashion Design and Luxury Management in Paris. I work across photography,
-            art direction, and visual storytelling, with a soft spot for brands that actually have
-            something to say. Looking for opportunities in art direction and creative strategy.
-          </p>
-          <div class="about-btns about-reveal">
-            <button class="btn-outline" id="bioReadMoreBtn">Read more deeply</button>
-            <a class="btn-outline" href="cv.html">Go to my resume</a>
+        <div class="about-text" id="about">
+          <p class="hero-location">BASED IN PARIS · OPEN TO WORK IN FRANCE / EUROPE</p>
+          <h1>Harshita Sharma<span class="hero-star" aria-hidden="true">✦</span></h1>
+          <p class="hero-role">Visual Content Designer &amp; Creative</p>
+          <p class="hero-summary">I make visual content for fashion, culture and lifestyle across design, photography, social and video.</p>
+          <div class="about-btns">
+            <button class="btn-outline" data-open-bio>Read my story ↗</button>
           </div>
+          <section id="capabilities" class="s-capabilities" aria-labelledby="capabilitiesTitle">
+      <div class="capabilities-inner">
+        <h2 id="capabilitiesTitle" class="eyebrow">What I do</h2>
+        <div class="capability-grid">
+          <div><h3>Concept</h3><p>Art Direction · Research · Moodboards</p></div>
+          <div><h3>Design</h3><p>Graphic Design · Image Making · Layout</p></div>
+          <div><h3>Photo + Video</h3><p>Photography · Reels · Editing</p></div>
+          <div><h3>Social</h3><p>Posts · Carousels · Campaign Content</p></div>
+        </div>
+      </div>
+    </section>
         </div>
       </div>
     </section>
 
-    <!-- ── 2 · WORK CARDS (stacked parallax) ─────────────── -->
-    <section id="work" class="s-cards">
+    <section id="browse" class="s-cards" aria-label="Explore portfolio">
       <div class="cards-track">
-
-        <div class="stack-card card-projects" data-href="#projects">
+        <a class="stack-card card-projects" href="#work">
           <div class="card-inner">
-            <span class="card-label">Projects</span>
-            <div class="card-img-wrap">
-              <img src="Project Asli/1.png" alt="Projects" />
-            </div>
-            <p class="card-desc">Selected brand &amp; editorial work</p>
-            <span class="card-cta">View ↗</span>
+            <span class="card-label">Projects <span aria-hidden="true">↗</span></span>
+            <div class="card-img-wrap"><img src="Project Asli/1.png" alt="" loading="lazy" /></div>
           </div>
-        </div>
-
-        <div class="stack-card card-photo" data-href="#gallery">
+        </a>
+        <a class="stack-card card-graphics" href="#graphicfolio">
           <div class="card-inner">
-            <span class="card-label">Photography</span>
-            <div class="card-img-wrap">
-              <img src="elements/portraits/1.png" alt="Photography" />
-            </div>
-            <p class="card-desc">Portrait &amp; editorial photography</p>
-            <span class="card-cta">View ↗</span>
+            <span class="card-label">Graphics <span aria-hidden="true">↗</span></span>
+            <div class="card-img-wrap"><img src="posterfolio/new%20work/poster4.png" alt="" loading="lazy" /></div>
           </div>
-        </div>
-
-        <div class="stack-card card-graphics" data-href="#graphicfolio">
+        </a>
+        <a class="stack-card card-photo" href="#gallery">
           <div class="card-inner">
-            <span class="card-label">Graphics</span>
-            <div class="card-img-wrap">
-              <img src="elements/posterfolio/mainposter2.png" alt="Graphics" />
-            </div>
-            <p class="card-desc">Poster design &amp; graphic work</p>
-            <span class="card-cta">View ↗</span>
+            <span class="card-label">Photography <span aria-hidden="true">↗</span></span>
+            <div class="card-img-wrap"><img src="elements/portraits/1.png" alt="" loading="lazy" /></div>
           </div>
-        </div>
+        </a>
 
       </div>
     </section>
 
-    <!-- ── 3 · SELECTED WORKS ─────────────────────────────── -->
-    <section id="projects" class="s-works">
+    <section id="work" class="s-works">
+      <span id="projects" aria-hidden="true"></span>
       <div class="works-inner">
-        <h2 class="section-title" data-anim>Selective works.</h2>
-        <p class="section-sub" data-anim style="--d:100ms">things I made with love ✦</p>
+        <h2 class="section-title" data-anim>Projects</h2>
+        <p class="section-sub" data-anim style="--d:100ms">Brand projects and selected work.</p>
 
-        <!-- Primary 3 cards always visible -->
+        <!-- All projects, in reading order -->
         <div class="works-grid" id="mainWorksGrid">
 
-          <!-- 1. Asli — star project -->
-          <a class="work-card" href="asli-modern-indian-jewellery.html" data-overlay>
-            <div class="star-badge">⭐ STAR PROJECT</div>
+          <!-- Asli: self-initiated identity -->
+          <a class="work-card" href="asli-modern-indian-jewellery.html">
             <div class="work-img">
-              <img src="Project Asli/1.png" alt="Asli" />
+              <img src="Project Asli/1.png" alt="Asli jewellery identity and art direction" loading="lazy" decoding="async" />
             </div>
             <div class="work-body">
-              <span class="work-tag">ART DIRECTION</span>
-              <h3>Asli (Modern Indian Jewellery)</h3>
-              <p>Self-initiated brand world focused on crediting artisans and origin.</p>
-              <span class="work-link">open ↗</span>
+              <span class="work-tag">SELF-INITIATED</span>
+              <h3>Asli · Modern Indian Jewellery</h3>
+              <p>Art Direction · Identity · Image Making</p>
+              <span class="work-link">View project ↗</span>
             </div>
           </a>
 
-          <!-- 2. Gulaal -->
-          <a class="work-card" href="gulaal.html" data-overlay>
+          <!-- Gulaal: brand internship -->
+          <a class="work-card" href="gulaal.html">
             <div class="work-img">
-              <img src="Gulaal/website-1.jpg" alt="Gulaal" />
+              <img src="Gulaal/website-1.jpg" alt="Fashion photography for Gulaal" loading="lazy" decoding="async" />
             </div>
             <div class="work-body">
-              <span class="work-tag">INTERNSHIP · COMMUNICATION</span>
+              <span class="work-tag">BRAND INTERNSHIP</span>
               <h3>Gulaal</h3>
-              <p>Six months inside a conscious Indian label — content, shoots & brand communication.</p>
-              <span class="work-link">open ↗</span>
+              <p>Social Content · Photography · Reels</p>
+              <span class="work-link">View project ↗</span>
             </div>
           </a>
 
           <!-- 3. Loewe -->
-          <a class="work-card" href="loewe.html" data-overlay>
+          <a class="work-card" href="loewe.html">
             <div class="work-img">
-              <img src="loewe/Loewe_page-0001.jpg" alt="Loewe" />
+              <img src="loewe/Loewe_page-0001.jpg" alt="Loewe experimental campaign study" loading="lazy" decoding="async" />
             </div>
             <div class="work-body">
               <span class="work-tag">CAMPAIGN STUDY</span>
               <h3>Loewe</h3>
-              <p>Collaborative campaign concept translated into an editorial sequence.</p>
-              <span class="work-link">open ↗</span>
+              <p>Art Direction · Photography · Layout</p>
+              <span class="work-link">View project ↗</span>
             </div>
           </a>
 
-        </div>
 
-        <!-- Hidden extra cards: Moschino + Acne -->
-        <div class="works-extra-grid" id="worksExtraGrid" aria-hidden="true">
-
-          <a class="work-card" href="moschino.html" data-overlay>
+          <a class="work-card" href="moschino.html">
             <div class="work-img">
-              <img src="Moschino/1.png" alt="Moschino" />
+              <img src="Moschino/1.png" alt="Moschino brand and retail research presentation" loading="lazy" decoding="async" />
             </div>
             <div class="work-body">
-              <span class="work-tag">EDITORIAL</span>
+              <span class="work-tag">COLLABORATIVE STUDY</span>
               <h3>Moschino</h3>
-              <p>A responsive PDF presentation laid out as a single project page.</p>
-              <span class="work-link">open ↗</span>
+              <p>Brand Research · Retail · Presentation</p>
+              <span class="work-link">View project ↗</span>
             </div>
           </a>
 
-          <a class="work-card" href="acne-studio.html" data-overlay>
+          <a class="work-card" href="acne-studio.html">
             <div class="work-img">
-              <img src="acne studios/2.png" alt="Acne Studios" />
+              <img src="acne studios/2.png" alt="Acne Studios campaign concept" loading="lazy" decoding="async" />
             </div>
             <div class="work-body">
-              <span class="work-tag">RETAIL STUDY</span>
+              <span class="work-tag">CAMPAIGN CONCEPT</span>
               <h3>Acne Studios</h3>
-              <p>A visual sequence arranged from the Acne Studios folder.</p>
-              <span class="work-link">open ↗</span>
+              <p>Visual Research · Creative Direction</p>
+              <span class="work-link">View project ↗</span>
             </div>
           </a>
 
         </div>
 
-        <!-- Expand row -->
-        <div class="works-expand-row">
-          <button class="works-expand-btn" id="worksExpandBtn" aria-expanded="false">
-            View more ↓
-          </button>
-        </div>
       </div>
     </section>
 
-    <!-- ── 4 · PHOTOGRAPHY (two-row marquee + dock) ──────── -->
-    <section id="gallery" class="s-gallery">
-      <div class="gallery-header">
-        <h2 class="section-title" data-anim>Photography</h2>
-        <p class="gallery-quote" data-anim style="--d:100ms">Photography is where it started. I shoot studio, product, and sometimes outdoors. I love the whole process of it</p>
-      </div>
-
-      <!-- Row 1: Portrait Photography -->
-      <div class="gallery-row-wrap">
-        <div class="gallery-row-head">
-          <p class="gallery-row-label">Portrait</p>
-          <div class="marquee-nav-btns">
-            <button class="marquee-prev" aria-label="Previous">←</button>
-            <button class="marquee-next" aria-label="Next">→</button>
-          </div>
-        </div>
-        <div class="marquee-outer" data-gallery-id="portraits">
-          <div class="marquee-track">
-            <div class="marquee-set">
-              <div class="m-img" data-gallery="portraits"><img src="elements/portraits/1.png"        alt="Portrait" /></div>
-              <div class="m-img" data-gallery="portraits"><img src="elements/portraits/2.png"        alt="Portrait" /></div>
-              <div class="m-img" data-gallery="portraits"><img src="elements/portraits/3.png"        alt="Portrait" /></div>
-              <div class="m-img" data-gallery="portraits"><img src="elements/portraits/4.png"        alt="Portrait" /></div>
-              <div class="m-img" data-gallery="portraits"><img src="elements/portraits/5.png"        alt="Portrait" /></div>
-              <div class="m-img" data-gallery="portraits"><img src="elements/portraits/6.png"        alt="Portrait" /></div>
-              <div class="m-img" data-gallery="portraits"><img src="elements/portraits/15.png"       alt="Portrait" /></div>
-              <div class="m-img" data-gallery="portraits"><img src="elements/portraits/16.png"       alt="Portrait" /></div>
-              <div class="m-img" data-gallery="portraits"><img src="elements/portraits/DSC02256.png" alt="Portrait" /></div>
-              <div class="m-img" data-gallery="portraits"><img src="elements/portraits/DSC02719.png" alt="Portrait" /></div>
-              <div class="m-img" data-gallery="portraits"><img src="elements/portraits/final 1.png"  alt="Portrait" /></div>
-              <div class="m-img" data-gallery="portraits"><img src="elements/portraits/3.1.png"      alt="Portrait" /></div>
-            </div>
-            <div class="marquee-set" aria-hidden="true">
-              <div class="m-img" data-gallery="portraits"><img src="elements/portraits/1.png"        alt="" /></div>
-              <div class="m-img" data-gallery="portraits"><img src="elements/portraits/2.png"        alt="" /></div>
-              <div class="m-img" data-gallery="portraits"><img src="elements/portraits/3.png"        alt="" /></div>
-              <div class="m-img" data-gallery="portraits"><img src="elements/portraits/4.png"        alt="" /></div>
-              <div class="m-img" data-gallery="portraits"><img src="elements/portraits/5.png"        alt="" /></div>
-              <div class="m-img" data-gallery="portraits"><img src="elements/portraits/6.png"        alt="" /></div>
-              <div class="m-img" data-gallery="portraits"><img src="elements/portraits/15.png"       alt="" /></div>
-              <div class="m-img" data-gallery="portraits"><img src="elements/portraits/16.png"       alt="" /></div>
-              <div class="m-img" data-gallery="portraits"><img src="elements/portraits/DSC02256.png" alt="" /></div>
-              <div class="m-img" data-gallery="portraits"><img src="elements/portraits/DSC02719.png" alt="" /></div>
-              <div class="m-img" data-gallery="portraits"><img src="elements/portraits/final 1.png"  alt="" /></div>
-              <div class="m-img" data-gallery="portraits"><img src="elements/portraits/3.1.png"      alt="" /></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Row 2: Product Photography -->
-      <div class="gallery-row-wrap">
-        <div class="gallery-row-head">
-          <p class="gallery-row-label">Product</p>
-          <div class="marquee-nav-btns">
-            <button class="marquee-prev" aria-label="Previous">←</button>
-            <button class="marquee-next" aria-label="Next">→</button>
-          </div>
-        </div>
-        <div class="marquee-outer marquee-outer--rtl" data-gallery-id="products">
-          <div class="marquee-track marquee-track--slow">
-            <div class="marquee-set">
-              <div class="m-img m-img--product" data-gallery="products"><img src="product/1.png"          alt="Product" /></div>
-              <div class="m-img m-img--product" data-gallery="products"><img src="product/2.png"          alt="Product" /></div>
-              <div class="m-img m-img--product" data-gallery="products"><img src="product/3.png"          alt="Product" /></div>
-              <div class="m-img m-img--product" data-gallery="products"><img src="product/4.png"          alt="Product" /></div>
-              <div class="m-img m-img--product" data-gallery="products"><img src="product/rg1.png"        alt="Product" /></div>
-              <div class="m-img m-img--product" data-gallery="products"><img src="product/rg2.png"        alt="Product" /></div>
-              <div class="m-img m-img--product" data-gallery="products"><img src="product/stb1.png"       alt="Product" /></div>
-              <div class="m-img m-img--product" data-gallery="products"><img src="product/stn1.png"       alt="Product" /></div>
-              <div class="m-img m-img--product" data-gallery="products"><img src="product/DSC07481.JPG"   alt="Product" /></div>
-              <div class="m-img m-img--product" data-gallery="products"><img src="product/DSC07487.JPG"   alt="Product" /></div>
-              <div class="m-img m-img--product" data-gallery="products"><img src="product/DSC07513.JPG"   alt="Product" /></div>
-              <div class="m-img m-img--product" data-gallery="products"><img src="product/DSC07549.JPG"   alt="Product" /></div>
-              <div class="m-img m-img--product" data-gallery="products"><img src="product/DSC07604.JPG"   alt="Product" /></div>
-              <div class="m-img m-img--product" data-gallery="products"><img src="product/DSC07615.JPG"   alt="Product" /></div>
-              <div class="m-img m-img--product" data-gallery="products"><img src="product/DSC07761.JPG"   alt="Product" /></div>
-              <div class="m-img m-img--product" data-gallery="products"><img src="product/DSC07771.JPG"   alt="Product" /></div>
-              <div class="m-img m-img--product" data-gallery="products"><img src="product/DSC07878.JPG"   alt="Product" /></div>
-            </div>
-            <div class="marquee-set" aria-hidden="true">
-              <div class="m-img m-img--product" data-gallery="products"><img src="product/1.png"          alt="" /></div>
-              <div class="m-img m-img--product" data-gallery="products"><img src="product/2.png"          alt="" /></div>
-              <div class="m-img m-img--product" data-gallery="products"><img src="product/3.png"          alt="" /></div>
-              <div class="m-img m-img--product" data-gallery="products"><img src="product/4.png"          alt="" /></div>
-              <div class="m-img m-img--product" data-gallery="products"><img src="product/rg1.png"        alt="" /></div>
-              <div class="m-img m-img--product" data-gallery="products"><img src="product/rg2.png"        alt="" /></div>
-              <div class="m-img m-img--product" data-gallery="products"><img src="product/stb1.png"       alt="" /></div>
-              <div class="m-img m-img--product" data-gallery="products"><img src="product/stn1.png"       alt="" /></div>
-              <div class="m-img m-img--product" data-gallery="products"><img src="product/DSC07481.JPG"   alt="" /></div>
-              <div class="m-img m-img--product" data-gallery="products"><img src="product/DSC07487.JPG"   alt="" /></div>
-              <div class="m-img m-img--product" data-gallery="products"><img src="product/DSC07513.JPG"   alt="" /></div>
-              <div class="m-img m-img--product" data-gallery="products"><img src="product/DSC07549.JPG"   alt="" /></div>
-              <div class="m-img m-img--product" data-gallery="products"><img src="product/DSC07604.JPG"   alt="" /></div>
-              <div class="m-img m-img--product" data-gallery="products"><img src="product/DSC07615.JPG"   alt="" /></div>
-              <div class="m-img m-img--product" data-gallery="products"><img src="product/DSC07761.JPG"   alt="" /></div>
-              <div class="m-img m-img--product" data-gallery="products"><img src="product/DSC07771.JPG"   alt="" /></div>
-              <div class="m-img m-img--product" data-gallery="products"><img src="product/DSC07878.JPG"   alt="" /></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ── 5 · GRAPHICFOLIO (stacked parallax) ───────────── -->
     <section id="graphicfolio" class="s-graphic">
       <div class="graphic-inner">
-        <h2 class="section-title" data-anim>Graphicfolio</h2>
+        <h2 class="section-title" data-anim>Graphics</h2>
+        <p class="archive-intro">Posters, layouts and visual experiments.</p>
+        <p class="gallery-hint">Scroll or use the arrows · Select a poster to enlarge</p>
         <div class="poster-track" id="posterTrack">
           <div class="poster-wrap pc-p1">
             <div class="poster-card">
-              <img src="posterfolio/poster1.png" alt="Poster 1" loading="lazy" />
+              <img src="posterfolio/new%20work/poster1%20.png" alt="Poster 1" loading="lazy" decoding="async" />
             </div>
           </div>
           <div class="poster-wrap pc-p2">
             <div class="poster-card">
-              <img src="posterfolio/13_2.png" alt="Poster 2" loading="lazy" />
+              <img src="posterfolio/new%20work/poster2.png" alt="Poster 2" loading="lazy" decoding="async" />
             </div>
           </div>
           <div class="poster-wrap pc-p3">
             <div class="poster-card">
-              <img src="posterfolio/mainposter2.png" alt="Poster 3" loading="lazy" />
+              <img src="posterfolio/new%20work/poster3.png" alt="Poster 3" loading="lazy" decoding="async" />
             </div>
           </div>
           <div class="poster-wrap pc-p4">
             <div class="poster-card">
-              <img src="posterfolio/1.png" alt="Poster 4" loading="lazy" />
+              <img src="posterfolio/new%20work/poster4.png" alt="Poster 4" loading="lazy" decoding="async" />
             </div>
           </div>
           <div class="poster-wrap pc-p5">
             <div class="poster-card">
-              <img src="posterfolio/India Habitat Center, Lodhi road, Delhi 8th-9th May.png" alt="Poster 5" loading="lazy" />
+              <img src="posterfolio/new%20work/poster5.png" alt="Poster 5" loading="lazy" decoding="async" />
             </div>
           </div>
         </div>
@@ -350,22 +223,128 @@
       </div>
     </section>
 
-    <!-- ── 6 · CONNECT / FOOTER ───────────────────────────── -->
-    <section id="contact" class="s-contact">
-      <div class="contact-inner">
-        <h2>Connect with me.</h2>
-        <div class="social-row">
-          <a href="https://www.behance.net/harshi100552f4" target="_blank" rel="noreferrer">Behance ↗</a>
-          <a href="https://www.linkedin.com/in/harshitasharma-fr" target="_blank" rel="noreferrer">Linkedin ↗</a>
+    <section id="gallery" class="s-gallery">
+      <div class="gallery-header">
+        <h2 class="section-title" data-anim>Photography</h2>
+        <p class="gallery-quote" data-anim style="--d:100ms">Portraits, editorial and product photography.</p>
+      </div>
+
+      <p class="gallery-hint">Swipe, scroll or use the arrows · Select an image to enlarge</p>
+      <!-- Row 1: Portrait Photography -->
+      <div class="gallery-row-wrap">
+        <div class="gallery-row-head">
+          <p class="gallery-row-label">Portrait / Editorial</p>
+          <div class="marquee-nav-btns">
+            <button class="marquee-prev" aria-label="Previous">←</button>
+            <button class="marquee-next" aria-label="Next">→</button>
+          </div>
         </div>
-        <p class="contact-copy">
-          I would love to work and learn in Art direction, Creative Branding and Advertising.
-          Please contact me for any leads. You will find my email ID below this. Thanks.
-        </p>
-        <a class="contact-email" href="mailto:harshita.sharma2@grenoble-em.com">✉ harshita.sharma2@grenoble-em.com</a>
-        <a class="back-top" href="#about">↑ BACK TO TOP</a>
+        <div class="marquee-outer" data-gallery-id="portraits">
+          <div class="marquee-track">
+            <div class="marquee-set">
+              <div class="m-img" data-gallery="portraits"><img src="elements/portraits/1.png"        alt="Portrait" loading="lazy" decoding="async" /></div>
+              <div class="m-img" data-gallery="portraits"><img src="elements/portraits/2.png"        alt="Portrait" loading="lazy" decoding="async" /></div>
+              <div class="m-img" data-gallery="portraits"><img src="elements/portraits/3.png"        alt="Portrait" loading="lazy" decoding="async" /></div>
+              <div class="m-img" data-gallery="portraits"><img src="elements/portraits/4.png"        alt="Portrait" loading="lazy" decoding="async" /></div>
+              <div class="m-img" data-gallery="portraits"><img src="elements/portraits/5.png"        alt="Portrait" loading="lazy" decoding="async" /></div>
+              <div class="m-img" data-gallery="portraits"><img src="elements/portraits/6.png"        alt="Portrait" loading="lazy" decoding="async" /></div>
+              <div class="m-img" data-gallery="portraits"><img src="elements/portraits/15.png"       alt="Portrait" loading="lazy" decoding="async" /></div>
+              <div class="m-img" data-gallery="portraits"><img src="elements/portraits/16.png"       alt="Portrait" loading="lazy" decoding="async" /></div>
+              <div class="m-img" data-gallery="portraits"><img src="elements/portraits/DSC02256.png" alt="Portrait" loading="lazy" decoding="async" /></div>
+              <div class="m-img" data-gallery="portraits"><img src="elements/portraits/DSC02719.png" alt="Portrait" loading="lazy" decoding="async" /></div>
+              <div class="m-img" data-gallery="portraits"><img src="elements/portraits/final 1.png"  alt="Portrait" loading="lazy" decoding="async" /></div>
+              <div class="m-img" data-gallery="portraits"><img src="elements/portraits/3.1.png"      alt="Portrait" loading="lazy" decoding="async" /></div>
+            </div>
+            <div class="marquee-set" aria-hidden="true">
+              <div class="m-img" data-gallery="portraits"><img src="elements/portraits/1.png"        alt="" loading="lazy" decoding="async" /></div>
+              <div class="m-img" data-gallery="portraits"><img src="elements/portraits/2.png"        alt="" loading="lazy" decoding="async" /></div>
+              <div class="m-img" data-gallery="portraits"><img src="elements/portraits/3.png"        alt="" loading="lazy" decoding="async" /></div>
+              <div class="m-img" data-gallery="portraits"><img src="elements/portraits/4.png"        alt="" loading="lazy" decoding="async" /></div>
+              <div class="m-img" data-gallery="portraits"><img src="elements/portraits/5.png"        alt="" loading="lazy" decoding="async" /></div>
+              <div class="m-img" data-gallery="portraits"><img src="elements/portraits/6.png"        alt="" loading="lazy" decoding="async" /></div>
+              <div class="m-img" data-gallery="portraits"><img src="elements/portraits/15.png"       alt="" loading="lazy" decoding="async" /></div>
+              <div class="m-img" data-gallery="portraits"><img src="elements/portraits/16.png"       alt="" loading="lazy" decoding="async" /></div>
+              <div class="m-img" data-gallery="portraits"><img src="elements/portraits/DSC02256.png" alt="" loading="lazy" decoding="async" /></div>
+              <div class="m-img" data-gallery="portraits"><img src="elements/portraits/DSC02719.png" alt="" loading="lazy" decoding="async" /></div>
+              <div class="m-img" data-gallery="portraits"><img src="elements/portraits/final 1.png"  alt="" loading="lazy" decoding="async" /></div>
+              <div class="m-img" data-gallery="portraits"><img src="elements/portraits/3.1.png"      alt="" loading="lazy" decoding="async" /></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Row 2: Product Photography -->
+      <div class="gallery-row-wrap">
+        <div class="gallery-row-head">
+          <p class="gallery-row-label">Product / Still Life</p>
+          <div class="marquee-nav-btns">
+            <button class="marquee-prev" aria-label="Previous">←</button>
+            <button class="marquee-next" aria-label="Next">→</button>
+          </div>
+        </div>
+        <div class="marquee-outer marquee-outer--rtl" data-gallery-id="products">
+          <div class="marquee-track marquee-track--slow">
+            <div class="marquee-set">
+              <div class="m-img m-img--product" data-gallery="products"><img src="product/1.png"          alt="Product" loading="lazy" decoding="async" /></div>
+              <div class="m-img m-img--product" data-gallery="products"><img src="product/2.png"          alt="Product" loading="lazy" decoding="async" /></div>
+              <div class="m-img m-img--product" data-gallery="products"><img src="product/3.png"          alt="Product" loading="lazy" decoding="async" /></div>
+              <div class="m-img m-img--product" data-gallery="products"><img src="product/4.png"          alt="Product" loading="lazy" decoding="async" /></div>
+              <div class="m-img m-img--product" data-gallery="products"><img src="product/rg1.png"        alt="Product" loading="lazy" decoding="async" /></div>
+              <div class="m-img m-img--product" data-gallery="products"><img src="product/rg2.png"        alt="Product" loading="lazy" decoding="async" /></div>
+              <div class="m-img m-img--product" data-gallery="products"><img src="product/stb1.png"       alt="Product" loading="lazy" decoding="async" /></div>
+              <div class="m-img m-img--product" data-gallery="products"><img src="product/stn1.png"       alt="Product" loading="lazy" decoding="async" /></div>
+              <div class="m-img m-img--product" data-gallery="products"><img src="product/DSC07481.JPG"   alt="Product" loading="lazy" decoding="async" /></div>
+              <div class="m-img m-img--product" data-gallery="products"><img src="product/DSC07487.JPG"   alt="Product" loading="lazy" decoding="async" /></div>
+              <div class="m-img m-img--product" data-gallery="products"><img src="product/DSC07513.JPG"   alt="Product" loading="lazy" decoding="async" /></div>
+              <div class="m-img m-img--product" data-gallery="products"><img src="product/DSC07549.JPG"   alt="Product" loading="lazy" decoding="async" /></div>
+              <div class="m-img m-img--product" data-gallery="products"><img src="product/DSC07604.JPG"   alt="Product" loading="lazy" decoding="async" /></div>
+              <div class="m-img m-img--product" data-gallery="products"><img src="product/DSC07615.JPG"   alt="Product" loading="lazy" decoding="async" /></div>
+              <div class="m-img m-img--product" data-gallery="products"><img src="product/DSC07761.JPG"   alt="Product" loading="lazy" decoding="async" /></div>
+              <div class="m-img m-img--product" data-gallery="products"><img src="product/DSC07771.JPG"   alt="Product" loading="lazy" decoding="async" /></div>
+              <div class="m-img m-img--product" data-gallery="products"><img src="product/DSC07878.JPG"   alt="Product" loading="lazy" decoding="async" /></div>
+            </div>
+            <div class="marquee-set" aria-hidden="true">
+              <div class="m-img m-img--product" data-gallery="products"><img src="product/1.png"          alt="" loading="lazy" decoding="async" /></div>
+              <div class="m-img m-img--product" data-gallery="products"><img src="product/2.png"          alt="" loading="lazy" decoding="async" /></div>
+              <div class="m-img m-img--product" data-gallery="products"><img src="product/3.png"          alt="" loading="lazy" decoding="async" /></div>
+              <div class="m-img m-img--product" data-gallery="products"><img src="product/4.png"          alt="" loading="lazy" decoding="async" /></div>
+              <div class="m-img m-img--product" data-gallery="products"><img src="product/rg1.png"        alt="" loading="lazy" decoding="async" /></div>
+              <div class="m-img m-img--product" data-gallery="products"><img src="product/rg2.png"        alt="" loading="lazy" decoding="async" /></div>
+              <div class="m-img m-img--product" data-gallery="products"><img src="product/stb1.png"       alt="" loading="lazy" decoding="async" /></div>
+              <div class="m-img m-img--product" data-gallery="products"><img src="product/stn1.png"       alt="" loading="lazy" decoding="async" /></div>
+              <div class="m-img m-img--product" data-gallery="products"><img src="product/DSC07481.JPG"   alt="" loading="lazy" decoding="async" /></div>
+              <div class="m-img m-img--product" data-gallery="products"><img src="product/DSC07487.JPG"   alt="" loading="lazy" decoding="async" /></div>
+              <div class="m-img m-img--product" data-gallery="products"><img src="product/DSC07513.JPG"   alt="" loading="lazy" decoding="async" /></div>
+              <div class="m-img m-img--product" data-gallery="products"><img src="product/DSC07549.JPG"   alt="" loading="lazy" decoding="async" /></div>
+              <div class="m-img m-img--product" data-gallery="products"><img src="product/DSC07604.JPG"   alt="" loading="lazy" decoding="async" /></div>
+              <div class="m-img m-img--product" data-gallery="products"><img src="product/DSC07615.JPG"   alt="" loading="lazy" decoding="async" /></div>
+              <div class="m-img m-img--product" data-gallery="products"><img src="product/DSC07761.JPG"   alt="" loading="lazy" decoding="async" /></div>
+              <div class="m-img m-img--product" data-gallery="products"><img src="product/DSC07771.JPG"   alt="" loading="lazy" decoding="async" /></div>
+              <div class="m-img m-img--product" data-gallery="products"><img src="product/DSC07878.JPG"   alt="" loading="lazy" decoding="async" /></div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
+
+    <section id="contact" class="s-contact">
+      <div class="contact-inner">
+        <img src="hero section elements/chai_filled.png" alt="" width="56" height="56" loading="lazy" />
+        <h2>Let’s make something interesting.</h2>
+        <div class="social-row">
+          <a href="mailto:harshita.sharma2@grenoble-em.com">Email ↗</a>
+          <a href="https://www.behance.net/harshi100552f4" target="_blank" rel="noreferrer">Behance ↗</a>
+          <a href="https://www.linkedin.com/in/harshitasharma-fr" target="_blank" rel="noreferrer">LinkedIn ↗</a>
+        </div>
+        <p class="contact-copy">
+          Open to visual content, graphic design, social and junior creative roles in France.
+        </p>
+        <a class="contact-email" href="mailto:harshita.sharma2@grenoble-em.com">✉ harshita.sharma2@grenoble-em.com</a>
+        <a class="back-top" href="#home">↑ BACK TO TOP</a>
+      </div>
+    </section>
+
+    </main>
 
     <!-- ── BIO OVERLAY ──────────────────────────────────────── -->
     <div id="bioOverlay" class="bio-overlay" aria-hidden="true">
@@ -374,12 +353,13 @@
         <button class="bio-ol-close" id="bioOlClose" aria-label="Close">✕</button>
         <h2 class="bio-ol-title">A little more about me.</h2>
         <div class="bio-ol-body">
-          <p>I grew up in a small town in Rajasthan, India. The first eighteen years of my life were spent in the same school, with the same faces, on the same streets. Looking back, all that time spent watching and noticing things was quietly shaping how I see the world.</p>
-          <p>NIFT is where I found photography. I fell in love with the whole process, from the first idea to the final image. It was the first time I felt like I could say something honest without needing words. I have always had a lot going on inside, and photography gave that a place to go.</p>
-          <p>During COVID, I had no studio and no equipment. So I made my own lights and used things from around the house to create photographs. I did not stop. That is just how I am with things I care about.</p>
-          <p>After NIFT, I received offer letters from schools I had been dreaming about for a long time — RCA, Speos, Parsons, Leeds. I ended up in Grenoble instead, and honestly, it turned out to be one of the best things that happened to me. That city felt like home in a way I had not expected. I am in Paris now for my second year, still figuring things out.</p>
-          <p>What I keep coming back to is that visuals, books, stories, and concepts all connect for me. They feed into each other and build into something. Language becomes image. Image becomes the identity of a brand. That is the loop I live in, and it is why art direction feels like the right space for me. It is where an image can carry a whole story.</p>
-          <p>There is more to me than I usually put out there. It does not always come out in words, but it finds its way into everything I make.</p>
+          <p>I grew up in a small town in Rajasthan, India. I spent the first eighteen years of my life in the same school, with the same faces, on the same streets. I spent a lot of that time simply watching things.</p>
+          <p>NIFT is where I found photography and design. I fell in love with the process, from the first idea to the final image or layout. It was the first time I could say something honest without needing words. I have always carried a lot inside, and photography and design gave it a place to go.</p>
+          <p>During COVID I had no studio and no equipment. So I built my own lights and used whatever I found around the house to make photographs. I did not stop. That is how I approach things I care about, and it shaped how I solve problems today. If I want a certain look and lack the right tool or skill, I learn it fast and find an unconventional way to get there. The method might be strange, but the result holds up. That instinct carries into my graphic design work too: I pick up new software and techniques quickly, and I keep pushing a layout or a visual until it feels right.</p>
+          <p>After NIFT I received offers from schools I had dreamed about for years: RCA, Speos, Parsons, Leeds. I chose Grenoble instead, and it became one of the best decisions I have made. That city felt like home faster than I expected. Now I live in Paris, in my second year, still finding my way.</p>
+          <p>Visuals, books, stories, and concepts all connect for me. One feeds the next. A word becomes an image. An image becomes an idea. That connection is what draws me toward creative and strategic roles across graphic design, brand, communication, and visual storytelling, not one fixed path.</p>
+          <p>Outside work, I work out to keep my mind clear. I write in my journal most days. I enjoy quiet evenings, though weekends usually pull me out into the world. I read often, and I love fantasy worlds, though I sometimes avoid stories that hit too close to real emotion.</p>
+          <p>There is more to me than usually comes through. It does not always show up in words, but it finds its way into everything I make.</p>
         </div>
       </div>
     </div>
@@ -389,15 +369,6 @@
       <div class="poster-ol-backdrop" id="posterOlBackdrop"></div>
       <button class="poster-ol-close" id="posterOlClose" aria-label="Close">✕</button>
       <img id="posterOlImg" src="" alt="Poster" />
-    </div>
-
-    <!-- ── PROJECT OVERLAY ───────────────────────────────── -->
-    <div id="projectOverlay" class="project-overlay" aria-hidden="true">
-      <div class="overlay-backdrop" id="overlayBackdrop"></div>
-      <div class="overlay-frame-wrap">
-        <button class="overlay-close" id="overlayClose" aria-label="Close">✕</button>
-        <iframe id="projectFrame" src="" title="Project" allowfullscreen></iframe>
-      </div>
     </div>
 
     <!-- ── GALLERY IMAGE OVERLAY ─────────────────────────── -->
@@ -416,7 +387,7 @@
     <!-- ── CUSTOM CURSOR ────────────────────────────────────── -->
     <img id="custom-cursor" src="hero section elements/cursor.png" alt="" aria-hidden="true" />
 
-    <!-- Shuffle portraits within portrait row, products within product row (kept separate) -->
+    <!-- Keep all photography assets in their respective browsable galleries. -->
     <script>
     (function () {
       var portraits = [
@@ -459,40 +430,25 @@
         'product/DSC07878.JPG',
       ];
 
-      function shuffle(arr) {
-        var a = arr.slice();
-        for (var i = a.length - 1; i > 0; i--) {
-          var j = Math.floor(Math.random() * (i + 1));
-          var t = a[i]; a[i] = a[j]; a[j] = t;
-        }
-        return a;
-      }
-
       function imgNode(src, gid, withAlt) {
         return '<div class="m-img" data-gallery="' + gid + '">'
-          + '<img src="' + src + '" alt="' + (withAlt ? 'Photography' : '') + '" loading="lazy" />'
+          + '<img src="' + src + '" alt="' + (gid === 'portraits' ? 'Portrait and editorial photograph' : 'Product and still-life photograph') + '" loading="lazy" />'
           + '</div>';
       }
 
       function buildTrack(row, gid) {
         var set = row.map(function (s) { return imgNode(s, gid, true); }).join('');
-        var dup = row.map(function (s) { return imgNode(s, gid, false); }).join('');
-        return '<div class="marquee-set">' + set + '</div>'
-             + '<div class="marquee-set" aria-hidden="true">' + dup + '</div>';
+        return '<div class="marquee-set">' + set + '</div>';
       }
 
       var t1 = document.querySelector('.marquee-outer[data-gallery-id="portraits"] .marquee-track');
       var t2 = document.querySelector('.marquee-outer[data-gallery-id="products"] .marquee-track');
-      if (t1) t1.innerHTML = buildTrack(shuffle(portraits), 'portraits');
-      if (t2) t2.innerHTML = buildTrack(shuffle(products),  'products');
+      if (t1) t1.innerHTML = buildTrack(portraits, 'portraits');
+      if (t2) t2.innerHTML = buildTrack(products, 'products');
     })();
     </script>
 
     <script src="main.js"></script>
-    <script>
-      setTimeout(function () {
-        document.body.classList.remove('is-loading');
-      }, 2000);
-    </script>
+
   </body>
 </html>

@@ -1,277 +1,23 @@
 (function () {
   'use strict';
 
-  /* ── Easing helpers ──────────────────────────────────────*/
+  var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
-  function lerp(a, b, t) { return a + (b - a) * t; }
-  function clamp(v, lo, hi) { return Math.min(hi, Math.max(lo, v)); }
-  function smoothstep(t) { return t * t * (3 - 2 * t); }
-
-  /* ── Section 2: Stacked cards ────────────────────────────*/
-
-  var cardsSection = document.querySelector('.s-cards');
-  var cardEls = [
-    document.querySelector('.card-projects'),
-    document.querySelector('.card-photo'),
-    document.querySelector('.card-graphics'),
-  ];
-
-  function updateCards() {
-    if (!cardsSection || !cardEls[0]) return;
-    if (window.innerWidth <= 700) {
-      cardEls.forEach(function (card) { if (card) card.style.transform = ''; });
-      return;
-    }
-    var rect  = cardsSection.getBoundingClientRect();
-    var total = cardsSection.offsetHeight - window.innerHeight;
-    var raw   = clamp(-rect.top / total, 0, 1);
-    var p     = smoothstep(clamp(raw / 0.65, 0, 1));
-    var cw    = cardEls[0].offsetWidth;
-    var step  = Math.min(cw * 1.18, (window.innerWidth - cw) / 2 - 8);
-
-    var stacked = [[0, 14, -4], [0, 0, 2], [0, -11, -2]];
-    var spread  = [[-step, 0, -5], [0, 0, 0], [step, 0, 5]];
-
-    cardEls.forEach(function (card, i) {
-      if (!card) return;
-      var s = stacked[i], e = spread[i];
-      card.style.transform = [
-        'translateX(' + lerp(s[0], e[0], p).toFixed(2) + 'px)',
-        'translateY(' + lerp(s[1], e[1], p).toFixed(2) + 'px)',
-        'rotate('     + lerp(s[2], e[2], p).toFixed(2) + 'deg)',
-      ].join(' ');
-      card.style.zIndex = p < 0.3 ? String(2 - i) : String(i === 1 ? 3 : 2);
-    });
-  }
-
-  /* ── Section 5: Graphicfolio poster parallax (5 posters) ─*/
-
-  var graphicSection = document.querySelector('.s-graphic');
-  var posterWraps = [
-    document.querySelector('.pc-p1'),
-    document.querySelector('.pc-p2'),
-    document.querySelector('.pc-p3'),
-    document.querySelector('.pc-p4'),
-    document.querySelector('.pc-p5'),
-  ];
-
-  function updatePosters() {
-    if (!graphicSection || !posterWraps[0]) return;
-    if (window.innerWidth <= 700) {
-      posterWraps.forEach(function (wrap) { if (wrap) wrap.style.transform = ''; });
-      return;
-    }
-    var rect = graphicSection.getBoundingClientRect();
-    var raw  = clamp(
-      (window.innerHeight - rect.top) / (window.innerHeight * 0.85),
-      0, 1
-    );
-    var p    = smoothstep(raw);
-    var pw   = posterWraps[0].offsetWidth;
-
-    /* step computed from track container so all 5 posters fit exactly */
-    var trackEl = graphicSection.querySelector('.poster-track');
-    var trackW  = trackEl ? trackEl.offsetWidth : 900;
-    var step    = (trackW - pw) / 4;
-
-    /* stacked: all clustered in center with slight offsets */
-    var stacked = [
-      [0,  20, -8],
-      [0,   8, -3],
-      [0,   0,  2],
-      [0,  -8,  4],
-      [0, -18, -2],
-    ];
-    /* spread: evenly spaced across track width */
-    var spread = [
-      [-step * 2,  0, -6],
-      [-step,      0, -3],
-      [0,          0,  0],
-      [ step,      0,  3],
-      [ step * 2,  0,  6],
-    ];
-
-    posterWraps.forEach(function (wrap, i) {
-      if (!wrap) return;
-      var s = stacked[i], e = spread[i];
-      wrap.style.transform = [
-        'translateX(' + lerp(s[0], e[0], p).toFixed(2) + 'px)',
-        'translateY(' + lerp(s[1], e[1], p).toFixed(2) + 'px)',
-        'rotate('     + lerp(s[2], e[2], p).toFixed(2) + 'deg)',
-      ].join(' ');
-    });
-  }
-
-  /* ── Stack-card click ────────────────────────────────────*/
-
-  document.querySelectorAll('.stack-card').forEach(function (card) {
-    card.addEventListener('click', function () {
-      var target = document.querySelector(card.getAttribute('data-href'));
-      if (target) target.scrollIntoView({ behavior: 'smooth' });
-    });
-  });
-
-  /* ── Section 1: Typewriter effect ───────────────────────*/
-
-  var titleEl = document.getElementById('aboutTitle');
-
-  if (titleEl) {
-    var typeText  = titleEl.getAttribute('data-type') || '';
-    var typeSpeed = 48;
-
-    titleEl.textContent = '';
-    titleEl.classList.add('is-typing');
-
-    var revealEls = document.querySelectorAll('.about-reveal');
-
-    function runTypewriter() {
-      var i = 0;
-      function tick() {
-        if (i < typeText.length) {
-          titleEl.textContent += typeText[i];
-          i++;
-          setTimeout(tick, typeSpeed);
-        } else {
-          titleEl.classList.remove('is-typing');
-          revealEls.forEach(function (el, idx) {
-            setTimeout(function () { el.classList.add('revealed'); }, 200 + idx * 140);
-          });
-        }
-      }
-      tick();
-    }
-
-    /* Start after loader animation so typewriter is visible */
-    setTimeout(runTypewriter, 2200);
-  }
-
-  /* ── Section 4: JS-driven marquee + dock + prev/next ─────
-     Replaces CSS @keyframes. Each .marquee-outer gets:
-     • a RAF loop that scrolls the track at a constant px/frame
-     • pause-on-hover (for dock interaction)
-     • prev / next buttons that skip one image width             */
-
-  var DOCK_MAX   = 1.65;
-  var DOCK_SIGMA = 130;
-
+  /* Native horizontal browsing works with touch, trackpad, buttons and keyboard. */
   document.querySelectorAll('.marquee-outer').forEach(function (outer) {
-    var track    = outer.querySelector('.marquee-track');
-    var firstSet = outer.querySelector('.marquee-set');
-    if (!track || !firstSet) return;
-
-    /* Speed: normal vs slow (product row) */
-    var isSlow    = track.classList.contains('marquee-track--slow');
-    var isReverse = outer.classList.contains('marquee-outer--rtl');
-    var speed     = isSlow ? 0.55 : 0.85; /* px per frame at 60 fps */
-
-    /* Dimensions – recalculated once then cached */
-    var setWidth  = 0;
-    var imgStep   = 0;
-
-    function measureDimensions() {
-      /* setWidth = total width of one complete marquee-set */
-      setWidth = firstSet.scrollWidth + 12; /* +gap between sets */
-      var sampleImg = firstSet.querySelector('.m-img');
-      var w = sampleImg ? sampleImg.offsetWidth : 0;
-      imgStep = (w > 0 ? w : 220) + 12;
+    outer.tabIndex = 0;
+    outer.setAttribute('role', 'region');
+    outer.setAttribute('aria-label', outer.dataset.galleryId === 'portraits' ? 'Portrait and editorial photography' : 'Product and still-life photography');
+    var row = outer.closest('.gallery-row-wrap');
+    function step(dir) {
+      outer.scrollBy({ left: dir * outer.clientWidth * 0.8, behavior: reducedMotion.matches ? 'auto' : 'smooth' });
     }
-
-    measureDimensions();
-    window.addEventListener('resize', measureDimensions, { passive: true });
-    window.addEventListener('load', measureDimensions, { passive: true });
-
-    /* Remeasure as lazy images load and expand the set width */
-    if (typeof ResizeObserver !== 'undefined') {
-      new ResizeObserver(measureDimensions).observe(firstSet);
-    }
-
-    /* Scroll state — RTL starts at setWidth and counts down */
-    var offset        = isReverse ? 0 : 0;
-    var paused        = false;
-    var transitioning = false;
-    var loopRaf;
-
-    function loop() {
-      if (!paused && !transitioning) {
-        if (isReverse) {
-          offset -= speed;
-          if (offset <= 0) offset += setWidth;
-          track.style.transform = 'translateX(-' + offset.toFixed(1) + 'px)';
-        } else {
-          offset += speed;
-          if (offset >= setWidth) offset -= setWidth;
-          track.style.transform = 'translateX(-' + offset.toFixed(1) + 'px)';
-        }
-      }
-      loopRaf = requestAnimationFrame(loop);
-    }
-    loopRaf = requestAnimationFrame(loop);
-
-    /* Pause on hover so dock works correctly */
-    outer.addEventListener('mouseenter', function () { paused = true; });
-    outer.addEventListener('mouseleave', function () { paused = false; });
-
-    /* ── Dock magnification ───────────────────────────── */
-    var imgs    = Array.from(outer.querySelectorAll('.m-img'));
-    var dockRaf = null;
-    var lastX   = 0;
-
-    function applyDock() {
-      dockRaf = null;
-      imgs.forEach(function (el) {
-        var r  = el.getBoundingClientRect();
-        var cx = r.left + r.width / 2;
-        var d  = Math.abs(lastX - cx);
-        var s  = 1 + (DOCK_MAX - 1) * Math.exp(-(d * d) / (2 * DOCK_SIGMA * DOCK_SIGMA));
-        el.style.transform  = 'scale(' + s.toFixed(3) + ')';
-        el.style.zIndex     = s > 1.4 ? '20' : '1';
-        el.style.boxShadow  = s > 1.5 ? '0 28px 72px rgba(0,0,0,.75)' : '';
-      });
-    }
-
-    function resetDock() {
-      if (dockRaf) { cancelAnimationFrame(dockRaf); dockRaf = null; }
-      imgs.forEach(function (el) {
-        el.style.transform = '';
-        el.style.zIndex    = '';
-        el.style.boxShadow = '';
-      });
-    }
-
-    outer.addEventListener('mousemove', function (e) {
-      lastX = e.clientX;
-      if (!dockRaf) dockRaf = requestAnimationFrame(applyDock);
-    }, { passive: true });
-
-    outer.addEventListener('mouseleave', resetDock);
-
-    /* ── Prev / Next buttons ──────────────────────────── */
-    var rowWrap = outer.closest('.gallery-row-wrap');
-    if (!rowWrap) return;
-
-    var prevBtn = rowWrap.querySelector('.marquee-prev');
-    var nextBtn = rowWrap.querySelector('.marquee-next');
-
-    function stepBy(dir) {
-      if (transitioning) return;
-      var target = offset + imgStep * dir;
-      /* wrap around seamlessly */
-      if (target < 0) target += setWidth;
-      if (target >= setWidth) target -= setWidth;
-
-      transitioning = true;
-      track.style.transition = 'transform 0.48s cubic-bezier(0.22,1,0.36,1)';
-      offset = target;
-      track.style.transform = 'translateX(-' + offset.toFixed(1) + 'px)';
-
-      setTimeout(function () {
-        track.style.transition = '';
-        transitioning = false;
-      }, 500);
-    }
-
-    if (prevBtn) prevBtn.addEventListener('click', function () { stepBy(-1); });
-    if (nextBtn) nextBtn.addEventListener('click', function () { stepBy(1); });
+    row.querySelector('.marquee-prev').addEventListener('click', function () { step(-1); });
+    row.querySelector('.marquee-next').addEventListener('click', function () { step(1); });
+    outer.addEventListener('keydown', function (e) {
+      if (e.target !== outer) return;
+      if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') { e.preventDefault(); step(e.key === 'ArrowLeft' ? -1 : 1); }
+    });
   });
 
   /* ── Section 4: Gallery image overlay ───────────────────*/
@@ -306,6 +52,7 @@
     galleryCurrentId = id;
     galleryIdx       = ((index % srcs.length) + srcs.length) % srcs.length;
     galleryOlImg.src = srcs[galleryIdx];
+    galleryOlImg.alt = (galleryCurrentId === 'portraits' ? 'Portrait and editorial photograph ' : 'Product and still-life photograph ') + (galleryIdx + 1);
     galleryOverlay.classList.add('open');
     galleryOverlay.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
@@ -322,6 +69,7 @@
     if (!srcs.length) return;
     galleryIdx = ((galleryIdx + dir) % srcs.length + srcs.length) % srcs.length;
     galleryOlImg.src = srcs[galleryIdx];
+    galleryOlImg.alt = (galleryCurrentId === 'portraits' ? 'Portrait and editorial photograph ' : 'Product and still-life photograph ') + (galleryIdx + 1);
   }
 
   document.querySelectorAll('.m-img').forEach(function (el) {
@@ -344,49 +92,6 @@
     if (e.key === 'Escape')     closeGallery();
     if (e.key === 'ArrowLeft')  galleryStep(-1);
     if (e.key === 'ArrowRight') galleryStep(1);
-  });
-
-  /* ── Project overlay ─────────────────────────────────────*/
-
-  var overlay  = document.getElementById('projectOverlay');
-  var frame    = document.getElementById('projectFrame');
-  var backdrop = document.getElementById('overlayBackdrop');
-  var closeBtn = document.getElementById('overlayClose');
-
-  function openOverlay(url) {
-    frame.src = url;
-    overlay.classList.add('open');
-    overlay.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
-    requestAnimationFrame(function () {
-      requestAnimationFrame(function () { overlay.classList.add('visible'); });
-    });
-  }
-
-  function closeOverlay() {
-    overlay.classList.remove('visible');
-    overlay.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = '';
-    setTimeout(function () {
-      if (!overlay.classList.contains('visible')) {
-        overlay.classList.remove('open');
-        frame.src = '';
-      }
-    }, 320);
-  }
-
-  document.querySelectorAll('.work-card[data-overlay]').forEach(function (card) {
-    card.addEventListener('click', function (e) {
-      e.preventDefault();
-      openOverlay(card.getAttribute('href'));
-    });
-  });
-
-  if (backdrop) backdrop.addEventListener('click', closeOverlay);
-  if (closeBtn) closeBtn.addEventListener('click', closeOverlay);
-
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape' && overlay && overlay.classList.contains('open')) closeOverlay();
   });
 
   /* ── Nav scroll shadow ───────────────────────────────────*/
@@ -412,6 +117,7 @@
       var img = card.querySelector('img');
       if (!img || !posterOverlay) return;
       posterOlImg.src = img.src;
+      posterOlImg.alt = img.alt;
       posterOverlay.classList.add('open');
       posterOverlay.setAttribute('aria-hidden', 'false');
       document.body.style.overflow = 'hidden';
@@ -439,7 +145,7 @@
   var bioOverlay    = document.getElementById('bioOverlay');
   var bioOlBackdrop = document.getElementById('bioOlBackdrop');
   var bioOlClose    = document.getElementById('bioOlClose');
-  var bioReadMoreBtn = document.getElementById('bioReadMoreBtn');
+  var bioReadMoreBtns = document.querySelectorAll('[data-open-bio]');
 
   function openBio() {
     if (!bioOverlay) return;
@@ -466,7 +172,7 @@
     }, 320);
   }
 
-  if (bioReadMoreBtn) bioReadMoreBtn.addEventListener('click', openBio);
+  bioReadMoreBtns.forEach(function (button) { button.addEventListener('click', openBio); });
   if (bioOlBackdrop)  bioOlBackdrop.addEventListener('click', closeBio);
   if (bioOlClose)     bioOlClose.addEventListener('click', closeBio);
 
@@ -555,11 +261,16 @@
 
   /* ── Sticker drag ────────────────────────────────────────*/
 
-  document.querySelectorAll('.sticker').forEach(function (sticker) {
+  document.querySelectorAll('.sticker:not(.sticker--social)').forEach(function (sticker) {
     var startX, startY, origLeft, origTop;
+    var isLink = sticker.matches('a[href]');
+    var hasDragged = false;
 
     sticker.addEventListener('pointerdown', function (e) {
+      if (e.button !== 0) return;
+      hasDragged = false;
       e.preventDefault();
+      if (isLink) sticker.focus({ preventScroll: true });
       sticker.setPointerCapture(e.pointerId);
       sticker.classList.add('dragging');
       var rect = sticker.getBoundingClientRect();
@@ -569,14 +280,18 @@
       startY   = e.clientY;
       origLeft = rect.left - sr.left;
       origTop  = rect.top  - sr.top;
-      sticker.style.left = origLeft + 'px';
-      sticker.style.top  = origTop  + 'px';
+      if (!isLink) {
+        sticker.style.left = origLeft + 'px';
+        sticker.style.top  = origTop  + 'px';
+      }
     });
 
     sticker.addEventListener('pointermove', function (e) {
       if (!sticker.classList.contains('dragging')) return;
       var dx = e.clientX - startX;
       var dy = e.clientY - startY;
+      if (Math.hypot(dx, dy) > 6) hasDragged = true;
+      if (isLink && !hasDragged) return;
       var section = sticker.closest('.s-about');
       var sr = section ? section.getBoundingClientRect() : { width: window.innerWidth, height: window.innerHeight };
       var sw = sticker.offsetWidth;
@@ -590,74 +305,18 @@
     sticker.addEventListener('pointerup', function () {
       sticker.classList.remove('dragging');
     });
+    sticker.addEventListener('pointercancel', function () {
+      hasDragged = true;
+      sticker.classList.remove('dragging');
+    });
+    sticker.addEventListener('lostpointercapture', function () {
+      sticker.classList.remove('dragging');
+    });
+    if (isLink) sticker.addEventListener('click', function (e) {
+      // Keyboard clicks have detail 0 and must remain usable after a drag.
+      if (hasDragged && e.detail !== 0) e.preventDefault();
+    });
   });
-
-  /* ── Section 3: Selected works stacked cards on scroll ───*/
-
-  var worksSection = document.querySelector('.s-works');
-
-  function updateWorkCards() {
-    if (!worksSection) return;
-    /* Only animate visible cards (not the hidden extra grid) */
-    var workCards = Array.from(document.querySelectorAll('#mainWorksGrid .work-card'));
-    if (!workCards.length) return;
-
-    var rect = worksSection.getBoundingClientRect();
-    var raw  = clamp(
-      (window.innerHeight - rect.top) / (window.innerHeight * 0.8),
-      0, 1
-    );
-    var p = smoothstep(raw);
-
-    workCards.forEach(function (card, i) {
-      var n    = workCards.length;
-      var mid  = (n - 1) / 2;
-      var dist = i - mid;
-      var stackedX = dist * 14;
-      var stackedY = Math.abs(dist) * 8;
-      var stackedR = dist * 1.5;
-
-      var e = [0, 0, 0];
-      var s = [stackedX, stackedY, stackedR];
-
-      card.style.transform = [
-        'translateX(' + lerp(s[0], e[0], p).toFixed(2) + 'px)',
-        'translateY(' + lerp(s[1], e[1], p).toFixed(2) + 'px)',
-        'rotate('     + lerp(s[2], e[2], p).toFixed(2) + 'deg)',
-      ].join(' ');
-    });
-  }
-
-  /* ── Works: View more / collapse toggle ──────────────────*/
-
-  var worksExpandBtn   = document.getElementById('worksExpandBtn');
-  var worksExtraGrid   = document.getElementById('worksExtraGrid');
-
-  if (worksExpandBtn && worksExtraGrid) {
-    /* Wire overlay clicks for the hidden extra cards immediately */
-    worksExtraGrid.querySelectorAll('.work-card[data-overlay]').forEach(function (card) {
-      card.addEventListener('click', function (e) {
-        e.preventDefault();
-        openOverlay(card.getAttribute('href'));
-      });
-    });
-
-    worksExpandBtn.addEventListener('click', function () {
-      var isExpanded = worksExpandBtn.getAttribute('aria-expanded') === 'true';
-
-      if (isExpanded) {
-        worksExtraGrid.classList.remove('expanded');
-        worksExtraGrid.setAttribute('aria-hidden', 'true');
-        worksExpandBtn.setAttribute('aria-expanded', 'false');
-        worksExpandBtn.textContent = 'View more ↓';
-      } else {
-        worksExtraGrid.classList.add('expanded');
-        worksExtraGrid.setAttribute('aria-hidden', 'false');
-        worksExpandBtn.setAttribute('aria-expanded', 'true');
-        worksExpandBtn.textContent = 'View less ↑';
-      }
-    });
-  }
 
   /* ── Posterfolio mobile prev/next ───────────────────────*/
 
@@ -668,18 +327,47 @@
   function posterMobStep(dir) {
     if (!posterTrackEl) return;
     var card = posterTrackEl.querySelector('.poster-wrap');
-    var step = card ? card.offsetWidth + 14 : 164;
-    posterTrackEl.scrollBy({ left: dir * step, behavior: 'smooth' });
+    var gap = parseFloat(getComputedStyle(posterTrackEl).gap) || 0;
+    var step = card ? card.offsetWidth + gap : 240;
+    posterTrackEl.scrollBy({ left: dir * step, behavior: reducedMotion.matches ? 'auto' : 'smooth' });
   }
 
   if (posterMobPrev) posterMobPrev.addEventListener('click', function () { posterMobStep(-1); });
   if (posterMobNext) posterMobNext.addEventListener('click', function () { posterMobStep(1); });
 
-  /* ── Scroll & resize ─────────────────────────────────────*/
-
-  function onScroll() { updateCards(); updatePosters(); updateWorkCards(); }
-  window.addEventListener('scroll', onScroll, { passive: true });
-  window.addEventListener('resize', onScroll);
-  onScroll();
+  /* Keyboard access and focus management for existing image/story viewers. */
+  document.querySelectorAll('.m-img, .poster-card').forEach(function (el) {
+    el.tabIndex = 0;
+    el.setAttribute('role', 'button');
+    el.setAttribute('aria-label', 'Enlarge ' + el.querySelector('img').alt);
+    el.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); el.click(); }
+    });
+  });
+  [galleryOverlay, posterOverlay, bioOverlay].forEach(function (dialog) {
+    if (!dialog) return;
+    dialog.setAttribute('role', 'dialog');
+    dialog.setAttribute('aria-modal', 'true');
+    dialog.setAttribute('aria-label', dialog === bioOverlay ? 'About Harshita' : 'Image viewer');
+    dialog.inert = true;
+    var returnFocus;
+    new MutationObserver(function () {
+      var open = dialog.getAttribute('aria-hidden') === 'false';
+      dialog.inert = !open;
+      document.querySelector('main').inert = open;
+      document.querySelector('.site-nav').inert = open;
+      if (open) {
+        returnFocus = document.activeElement;
+        dialog.querySelector('button').focus();
+      } else if (returnFocus) { returnFocus.focus(); }
+    }).observe(dialog, { attributes: true, attributeFilter: ['aria-hidden'] });
+    dialog.addEventListener('keydown', function (e) {
+      if (e.key !== 'Tab') return;
+      var items = Array.from(dialog.querySelectorAll('button, a[href]'));
+      var first = items[0], last = items[items.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    });
+  });
 
 })();
