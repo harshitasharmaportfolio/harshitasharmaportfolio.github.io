@@ -1,5 +1,38 @@
+/* Analytics must never interrupt portfolio interactions if Clarity is unavailable. */
+function trackPortfolioEvent(name) {
+  try {
+    if (typeof window.clarity === 'function') window.clarity('event', name);
+  } catch (_) { /* Tracking is optional. */ }
+}
+
 (function () {
   'use strict';
+
+  var stickerDragTracked = false;
+  if ('IntersectionObserver' in window) {
+    [['work', 'view_projects'], ['graphicfolio', 'view_graphics'], ['gallery', 'view_photography'], ['contact', 'reach_footer']].forEach(function (item) {
+      var section = document.getElementById(item[0]);
+      if (!section) return;
+      // For tall sections, require 35% of a viewport rather than 35% of the entire section.
+      var threshold = .35 * Math.min(1, window.innerHeight / Math.max(1, section.offsetHeight));
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting || entry.intersectionRatio < threshold) return;
+          observer.disconnect();
+          trackPortfolioEvent(item[1]);
+        });
+      }, { threshold: threshold });
+      observer.observe(section);
+    });
+  }
+  // Sticker links already have their own click/drag handler below.
+  document.querySelectorAll('a[href]:not(.sticker)').forEach(function (link) {
+    var eventName;
+    if (link.protocol === 'mailto:') eventName = 'click_email';
+    else if (/(^|\.)linkedin\.com$/i.test(link.hostname)) eventName = 'click_linkedin';
+    else if (/(^|\.)behance\.net$/i.test(link.hostname)) eventName = 'click_behance';
+    if (eventName) link.addEventListener('click', function () { trackPortfolioEvent(eventName); });
+  });
 
   var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
@@ -149,6 +182,7 @@
 
   function openBio() {
     if (!bioOverlay) return;
+    trackPortfolioEvent('open_about');
     bioOverlay.classList.add('open');
     bioOverlay.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
@@ -290,7 +324,13 @@
       if (!sticker.classList.contains('dragging')) return;
       var dx = e.clientX - startX;
       var dy = e.clientY - startY;
-      if (Math.hypot(dx, dy) > 6) hasDragged = true;
+      if (Math.hypot(dx, dy) > 6) {
+        hasDragged = true;
+        if (!stickerDragTracked) {
+          stickerDragTracked = true;
+          trackPortfolioEvent('drag_sticker');
+        }
+      }
       if (isLink && !hasDragged) return;
       var section = sticker.closest('.s-about');
       var sr = section ? section.getBoundingClientRect() : { width: window.innerWidth, height: window.innerHeight };
@@ -315,6 +355,8 @@
     if (isLink) sticker.addEventListener('click', function (e) {
       // Keyboard clicks have detail 0 and must remain usable after a drag.
       if (hasDragged && e.detail !== 0) e.preventDefault();
+      else if (sticker.classList.contains('sticker--linkedin')) trackPortfolioEvent('click_linkedin_sticker');
+      else if (sticker.classList.contains('sticker--behance')) trackPortfolioEvent('click_behance_sticker');
     });
   });
 
@@ -424,6 +466,14 @@
       status.textContent = 'Loading project…';
       frame.hidden = true;
       dialog.showModal();
+      var projectEvents = {
+        'asli-modern-indian-jewellery.html': 'open_project_asli',
+        'gulaal.html': 'open_project_gulaal',
+        'loewe.html': 'open_project_loewe',
+        'moschino.html': 'open_project_moschino',
+        'acne-studio.html': 'open_project_acne'
+      };
+      trackPortfolioEvent(projectEvents[card.getAttribute('href')]);
       close.focus();
       controller = new AbortController();
       var request = controller;
