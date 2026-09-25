@@ -261,7 +261,7 @@
 
   /* ── Sticker drag ────────────────────────────────────────*/
 
-  document.querySelectorAll('.sticker:not(.sticker--social)').forEach(function (sticker) {
+  document.querySelectorAll('.sticker').forEach(function (sticker) {
     var startX, startY, origLeft, origTop;
     var isLink = sticker.matches('a[href]');
     var hasDragged = false;
@@ -370,4 +370,94 @@
     });
   });
 
+})();
+
+/* Project reader: reuse each case study without exposing standalone navigation. */
+(function () {
+  var projects = ['asli-modern-indian-jewellery.html', 'loewe.html', 'moschino.html', 'acne-studio.html', 'gulaal.html'];
+  var dialog = document.createElement('dialog');
+  dialog.className = 'project-reader';
+  dialog.setAttribute('role', 'dialog');
+  dialog.setAttribute('aria-modal', 'true');
+  dialog.setAttribute('aria-label', 'Project case study');
+  dialog.innerHTML = '<button class="project-reader-close" type="button" aria-label="Close project">×</button><p class="project-reader-status" role="status">Loading project…</p><iframe title="Project case study"></iframe>';
+  document.body.appendChild(dialog);
+  var frame = dialog.querySelector('iframe');
+  var status = dialog.querySelector('[role="status"]');
+  var close = dialog.querySelector('button');
+  var controller, trigger, savedY, savedX, bodyStyle;
+
+  function closeProject() { if (dialog.open) dialog.close(); }
+  close.addEventListener('click', closeProject);
+  dialog.addEventListener('click', function (event) {
+    if (event.target !== dialog) return;
+    var r = dialog.getBoundingClientRect();
+    if (event.clientX < r.left || event.clientX > r.right || event.clientY < r.top || event.clientY > r.bottom) closeProject();
+  });
+  dialog.addEventListener('close', function () {
+    if (controller) controller.abort();
+    frame.removeAttribute('srcdoc');
+    document.body.style.cssText = bodyStyle;
+    window.scrollTo({ left: savedX, top: savedY, behavior: 'instant' });
+    if (trigger) trigger.focus({ preventScroll: true });
+  });
+  frame.addEventListener('load', function () {
+    if (!dialog.open || !frame.hasAttribute('srcdoc')) return;
+    frame.contentDocument.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape') { event.preventDefault(); closeProject(); }
+    });
+  });
+
+  document.querySelectorAll('.work-card').forEach(function (card) {
+    if (!projects.includes(card.getAttribute('href'))) return;
+    card.setAttribute('aria-haspopup', 'dialog');
+    card.addEventListener('click', async function (event) {
+      event.preventDefault();
+      trigger = card;
+      savedY = window.scrollY; savedX = window.scrollX;
+      bodyStyle = document.body.style.cssText;
+      document.body.style.position = 'fixed';
+      document.body.style.top = -savedY + 'px';
+      document.body.style.width = '100%';
+      document.body.style.overflow = 'hidden';
+      status.hidden = false;
+      status.textContent = 'Loading project…';
+      frame.hidden = true;
+      dialog.showModal();
+      close.focus();
+      controller = new AbortController();
+      var request = controller;
+      try {
+        var url = new URL(card.getAttribute('href'), document.baseURI);
+        var response = await fetch(url, { signal: request.signal });
+        if (!response.ok) throw new Error('Project unavailable');
+        var source = new DOMParser().parseFromString(await response.text(), 'text/html');
+        var content = source.querySelector('.page');
+        if (!content && card.getAttribute('href') === 'gulaal.html') {
+          content = source.createElement('main');
+          source.body.querySelectorAll('.page-intro, .sec, .page-footer').forEach(function (section) {
+            content.appendChild(section);
+          });
+          if (!content.children.length) throw new Error('Project content missing');
+        }
+        if (!content) throw new Error('Project content missing');
+        source.querySelectorAll('.topbar, .back-link, nav, a[href*="selective-works.html"]').forEach(function (el) { el.remove(); });
+        // Keep only the case study plus its original gallery/animation scripts.
+        var scripts = Array.from(source.body.querySelectorAll('script')).filter(function (script) { return !content.contains(script); });
+        source.body.replaceChildren(content, ...scripts);
+        source.head.querySelectorAll('script').forEach(function (script) { script.remove(); });
+        var base = source.createElement('base'); base.href = url.href;
+        source.head.prepend(base);
+        if (request.signal.aborted || !dialog.open) return;
+        frame.title = source.title + ' — project case study';
+        dialog.setAttribute('aria-label', source.title);
+        frame.srcdoc = '<!doctype html>' + source.documentElement.outerHTML;
+        frame.hidden = false;
+        status.hidden = true;
+      } catch (error) {
+        if (request.signal.aborted) return;
+        status.textContent = 'This project could not load. Please close it and try again.';
+      }
+    });
+  });
 })();

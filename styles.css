@@ -1049,7 +1049,7 @@ body.is-loading .loader { display: flex; }
 }
 .portfolio-home .s-about .sticker { z-index: 1; max-width: 72px; touch-action: none; }
 .portfolio-home .sticker--chai .chai-img { width: 60px; }
-.portfolio-home .s-about .sticker--social { display: block; width: 48px; line-height: 0; cursor: pointer; touch-action: auto; }
+.portfolio-home .s-about .sticker--social { display: block; width: 48px; line-height: 0; cursor: pointer; touch-action: none; }
 .portfolio-home .sticker--social img { display: block; width: 100%; height: auto; pointer-events: none; }
 .portfolio-home .s-works { padding: clamp(5rem, 9vw, 10rem) 0; border-top: 0; }
 .portfolio-home :is(.works-inner, .bio-inner, .gallery-header, .contact-inner) { width: min(1040px, 84%); margin-left: auto; margin-right: auto; }
@@ -1134,12 +1134,7 @@ body.is-loading .loader { display: flex; }
   .portfolio-home .hero-star { display: none; }
   .portfolio-home .about-text .hero-role { font-size: 1.3rem; }
   .portfolio-home .about-text .hero-location { font-size: .65rem; }
-  .portfolio-home .s-about > img.sticker:nth-of-type(1), .portfolio-home .s-about > img.sticker:nth-of-type(3), .portfolio-home .s-about > img.sticker:nth-of-type(6) { display: block; --sticker-width: 34px; --sticker-top: 95px; }
-  .portfolio-home .s-about > img.sticker:nth-of-type(3) { --sticker-top: auto; bottom: 40px; --sticker-right: 38%; }
   .portfolio-home .about-btns { max-width: 100%; }
-  .portfolio-home .s-about .sticker--social { width: 36px; --social-top: 110px; }
-  .portfolio-home .sticker--linkedin { --social-left: 70%; }
-  .portfolio-home .sticker--behance { --social-left: 84%; }
   .portfolio-home .works-grid { grid-template-columns: 1fr; gap: 32px; }
   .portfolio-home .bio-inner { grid-template-columns: 1fr; gap: 20px; }
   .portfolio-home .s-capabilities { padding: 0; margin-top: 40px; }
@@ -1150,7 +1145,80 @@ body.is-loading .loader { display: flex; }
   .portfolio-home .s-bio { padding: 64px 0; }
   .portfolio-home .s-graphic { padding: 64px 0; }
 }
+/* Hero decorations: phone content first; tablet stickers stay in the margins. */
+.story-label-phone { display: none; }
+@media (max-width: 767px) {
+  .portfolio-home .s-about .sticker,
+  .portfolio-home .about-avatar,
+  .portfolio-home .s-cards { display: none; }
+  .portfolio-home .s-about { min-height: 0; padding: 176px 0 36px; }
+  .portfolio-home .about-inner { width: 88%; grid-template-columns: 1fr; gap: 0; }
+  .portfolio-home .about-text { grid-column: 1; grid-row: 1; }
+  .portfolio-home .hero-note { display: none; }
+  .portfolio-home .story-label-desktop { display: none; }
+  .portfolio-home .story-label-phone { display: inline; }
+  .portfolio-home .about-btns .btn-outline { font-size: .65rem; padding: 7px 12px; min-height: 36px; }
+  .portfolio-home .s-capabilities { margin-top: 32px; }
+  .portfolio-home .s-works { padding: 48px 0; }
+  .portfolio-home .works-inner { width: 92%; }
+  .portfolio-home .works-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px 12px; margin-top: 28px; }
+  .portfolio-home .work-img { aspect-ratio: 3 / 2; }
+  .portfolio-home .work-body { min-height: 132px; padding: 8px; gap: 4px; }
+  .portfolio-home .work-tag { font-size: .48rem; line-height: 1.5; }
+  .portfolio-home .work-body h3 { font-size: .82rem; line-height: 1.35; overflow-wrap: anywhere; }
+  .portfolio-home .work-body p { font-size: .72rem; line-height: 1.45; }
+  .portfolio-home .work-link { font-size: .5rem; padding-top: 6px; }
+  .portfolio-home .graphic-inner { width: 94%; text-align: left; }
+  .portfolio-home .poster-track { gap: 14px; padding: 16px 4px 24px; }
+  .portfolio-home .poster-card img { width: auto; height: 240px; max-width: none; max-height: none; }
+  .portfolio-home .s-gallery { padding: 48px 0; }
+  .portfolio-home .gallery-header { width: 94%; padding-inline: 4px; margin-bottom: 14px; text-align: left; }
+  .portfolio-home .s-gallery .gallery-hint { width: 94%; margin-bottom: 24px; padding-inline: 4px; }
+  .portfolio-home .gallery-row-head { width: 94%; margin-bottom: 12px; padding-inline: 4px; }
+  .portfolio-home .gallery-row-wrap { margin-bottom: 32px; }
+  .portfolio-home .marquee-outer { width: 94%; padding: 8px 4px 20px; }
+  .portfolio-home .marquee-set { gap: 14px; }
+  .portfolio-home .m-img img { width: auto; height: 240px; max-width: none; max-height: none; }
+  .portfolio-home :is(.s-graphic, .s-gallery) .section-title { font-size: 1.05rem; line-height: 1.7; margin: 0 0 14px; text-align: left; }
+  .portfolio-home .s-graphic .section-title { padding-inline: 4px; }
+  .portfolio-home :is(.archive-intro, .gallery-quote) { font-size: .9rem; line-height: 1.6; text-align: left; }
+  .portfolio-home .archive-intro { padding-inline: 4px; margin-bottom: 14px; }
+  .portfolio-home :is(.s-graphic, .s-gallery) .gallery-hint { font-size: .75rem; line-height: 1.5; text-align: left; }
+  .portfolio-home .s-graphic .gallery-hint { width: 100%; padding-inline: 4px; margin-bottom: 24px; }
+  .portfolio-home .gallery-row-label { font-family: "Silkscreen", sans-serif; font-size: .75rem; line-height: 1.5; text-align: left; }
+}
+@media (min-width: 768px) and (max-width: 1024px) {
+  .portfolio-home .s-about .sticker { display: block; --sticker-width: 34px; --sticker-top: 110px; }
+  .portfolio-home .s-about > img.sticker { left: var(--sticker-left); }
+  .portfolio-home .s-about > img.sticker:nth-of-type(1) { --sticker-left: 6%; }
+  .portfolio-home .s-about > img.sticker:nth-of-type(6) { --sticker-left: 22%; }
+  .portfolio-home .s-about > img.sticker:nth-of-type(8) { --sticker-left: 38%; }
+  .portfolio-home .s-about > img.sticker:nth-of-type(3) { --sticker-left: 54%; }
+  .portfolio-home .s-about > img.sticker:nth-of-type(2) { --sticker-left: 6%; --sticker-top: calc(100% - 110px); }
+  .portfolio-home .s-about > img.sticker:nth-of-type(4) { --sticker-left: 22%; --sticker-top: calc(100% - 100px); }
+  .portfolio-home .s-about > img.sticker:nth-of-type(5) { --sticker-left: 38%; --sticker-top: calc(100% - 112px); }
+  .portfolio-home .s-about > img.sticker:nth-of-type(9) { --sticker-left: 54%; --sticker-top: calc(100% - 100px); }
+  .portfolio-home .s-about > img.sticker:nth-of-type(7) { --sticker-left: 72%; --sticker-top: calc(100% - 112px); }
+  .portfolio-home .s-about .sticker--chai { --sticker-top: calc(100% - 108px); --sticker-left: 88%; }
+  .portfolio-home .sticker--chai .chai-img { width: 34px; }
+  .portfolio-home .s-about .sticker--social { width: 36px; --social-top: 112px; }
+  .portfolio-home .sticker--linkedin { --social-left: 72%; }
+  .portfolio-home .sticker--behance { --social-left: 88%; }
+  .portfolio-home .hero-note { top: 154px; bottom: auto; left: auto; right: 6%; width: 240px; font-family: "Cormorant Garamond", Georgia, serif; font-size: 14px; font-style: italic; }
+}
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .portfolio-home *, .portfolio-home *::before, .portfolio-home *::after { animation: none !important; transition: none !important; }
+}
+
+/* Isolated case-study reader; homepage and project styling stay unchanged. */
+.project-reader { position: fixed; inset: 0; width: calc(100% - 64px); max-width: 1200px; height: calc(100dvh - 64px); max-height: none; margin: auto; padding: 48px 0 0; border: 0; background: #fff; color: #111; overflow: hidden; }
+.project-reader::backdrop { background: rgba(0, 0, 0, .78); }
+.project-reader iframe { display: block; width: 100%; height: 100%; border: 0; background: #fff; }
+.project-reader iframe[hidden] { display: none; }
+.project-reader-close { position: absolute; right: 4px; top: 2px; width: 44px; height: 44px; padding: 0; border: 0; background: #fff; color: #111; font: 32px/1 Arial, sans-serif; cursor: pointer; }
+.project-reader-close:focus-visible { outline: 2px solid #111; outline-offset: -4px; }
+.project-reader-status { padding: 24px; }
+@media (max-width: 767px) {
+  .project-reader { width: calc(100% - 16px); height: calc(100dvh - 16px); }
 }

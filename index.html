@@ -11,7 +11,7 @@
       href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Silkscreen:wght@400;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=08f3f0406d32" />
+    <link rel="stylesheet" href="styles.css?v=63e72f5bafda" />
   </head>
   <body class="portfolio-home">
     <a class="skip-link" href="#browse">Skip to portfolio</a>
@@ -33,20 +33,20 @@
     <main>
     <section id="home" class="s-about">
       <!-- Draggable stickers -->
-      <img class="sticker" src="hero section elements/books.png"        alt="" style="top:var(--sticker-top,17%);left:6%;width:var(--sticker-width,66px);transform:rotate(-12deg)"   />
-      <img class="sticker" src="hero section elements/camera.png"       alt="" style="top:var(--sticker-top,60%);left:4%;width:var(--sticker-width,55px);transform:rotate(8deg)"    />
+      <img class="sticker" src="hero section elements/books.png"        alt="" style="top:var(--sticker-top,17%);left:var(--sticker-left,6%);width:var(--sticker-width,66px);transform:rotate(-12deg)"   />
+      <img class="sticker" src="hero section elements/camera.png"       alt="" style="top:var(--sticker-top,60%);left:var(--sticker-left,4%);width:var(--sticker-width,55px);transform:rotate(8deg)"    />
       <img class="sticker" src="hero section elements/jhumka.png"       alt="" style="top:var(--sticker-top,20%);right:var(--sticker-right,5%);width:var(--sticker-width,72px);transform:rotate(-7deg)"  />
       <img class="sticker" src="hero section elements/journal.png"      alt="" style="top:var(--sticker-top,71%);right:var(--sticker-right,6%);width:var(--sticker-width,56px);transform:rotate(13deg)"  />
-      <img class="sticker" src="hero section elements/makeup.png"       alt="" style="top:var(--sticker-top,82%);left:20%;width:var(--sticker-width,62px);transform:rotate(-8deg)"  />
-      <img class="sticker" src="hero section elements/star.png"         alt="" style="top:var(--sticker-top,14%);left:48%;width:var(--sticker-width,38px);transform:rotate(17deg)"   />
+      <img class="sticker" src="hero section elements/makeup.png"       alt="" style="top:var(--sticker-top,82%);left:var(--sticker-left,20%);width:var(--sticker-width,62px);transform:rotate(-8deg)"  />
+      <img class="sticker" src="hero section elements/star.png"         alt="" style="top:var(--sticker-top,14%);left:var(--sticker-left,48%);width:var(--sticker-width,38px);transform:rotate(17deg)"   />
       <!-- Chai sticker — swaps filled→empty on hover/drag -->
-      <div class="sticker sticker--chai" style="top:43%;left:88%;transform:rotate(-7deg)">
+      <div class="sticker sticker--chai" style="top:var(--sticker-top,43%);left:var(--sticker-left,88%);transform:rotate(-7deg)">
         <img class="chai-img" src="hero section elements/chai_filled.png" alt="chai" />
 
       </div>
       <img class="sticker" src="hero section elements/studio light.png" alt="" style="top:var(--sticker-top,79%);right:var(--sticker-right,24%);width:var(--sticker-width,70px);transform:rotate(-14deg)"/>
       <img class="sticker" src="hero section elements/tour eiffel.png"  alt="" style="top:var(--sticker-top,15%);right:var(--sticker-right,23%);width:var(--sticker-width,46px);transform:rotate(8deg)"   />
-      <img class="sticker" src="hero section elements/yoga mat.png"     alt="" style="top:var(--sticker-top,86%);left:47%;width:var(--sticker-width,54px);transform:rotate(-6deg)"  />
+      <img class="sticker" src="hero section elements/yoga mat.png"     alt="" style="top:var(--sticker-top,86%);left:var(--sticker-left,47%);width:var(--sticker-width,54px);transform:rotate(-6deg)"  />
       <a class="sticker sticker--social sticker--linkedin" href="https://www.linkedin.com/in/harshitasharma-fr" target="_blank" rel="noreferrer" aria-label="LinkedIn profile" draggable="false" style="top:var(--social-top,31%);left:var(--social-left,7%);transform:rotate(-11deg)">
         <img src="hero section elements/linkedin.png" alt="" draggable="false" />
       </a>
@@ -65,7 +65,7 @@
           <p class="hero-role">Visual Content Designer &amp; Creative</p>
           <p class="hero-summary">I make visual content for fashion, culture and lifestyle across design, photography, social and video.</p>
           <div class="about-btns">
-            <button class="btn-outline" data-open-bio>Read my story ↗</button>
+            <button class="btn-outline" data-open-bio><span class="story-label-desktop">Read my story ↗</span><span class="story-label-phone">About me ↗</span></button>
           </div>
           <section id="capabilities" class="s-capabilities" aria-labelledby="capabilitiesTitle">
       <div class="capabilities-inner">
@@ -93,7 +93,7 @@
         <a class="stack-card card-graphics" href="#graphicfolio">
           <div class="card-inner">
             <span class="card-label">Graphics <span aria-hidden="true">↗</span></span>
-            <div class="card-img-wrap"><img src="posterfolio/new%20work/poster4.png" alt="" loading="lazy" /></div>
+            <div class="card-img-wrap"><picture><source media="(min-width: 1025px)" srcset="posterfolio/new%20work/poster2.png" /><img src="posterfolio/new%20work/poster4.png" alt="" loading="lazy" /></picture></div>
           </div>
         </a>
         <a class="stack-card card-photo" href="#gallery">
@@ -448,7 +448,7 @@
     })();
     </script>
 
-    <script src="main.js?v=042ff69fc2c1"></script>
+    <script src="main.js?v=a191acedf4ab"></script>
 
   </body>
 </html>
